@@ -19,12 +19,14 @@
   },
   "hero": {
     "variantA": {
+      "eyebrow": "Un Rituel Mensuel du Japon",
       "title": "Votre dose mensuelle de joie papetière japonaise ✿",
       "subtitle": "Stylos, papier, washi tape & surprises — livrés chez vous depuis le Japon. Rendez chaque moment calme un peu plus beau.",
       "cta": "S'abonner maintenant",
       "secondaryCta": "Voir le contenu"
     },
     "variantB": {
+      "eyebrow": "Papeterie Japonaise, Sélectionnée Chaque Mois",
       "title": "Papeterie japonaise. Livrée chaque mois.",
       "subtitle": "Stylos, papier et fournitures premium du Japon. Une box. Un prix. Sans complication.",
       "cta": "S'abonner — 60 $/mois",
@@ -41,6 +43,9 @@
     "total": "60 $/mois livré",
     "breakdown": "50 $ abonnement + 10 $ livraison forfaitaire",
     "perMonth": "/mois"
+  },
+  "marquee": {
+    "items": "Sélectionné du Japon  ~  Belle Papeterie  ~  Curation Mensuelle  ~  Livraison Mondiale  ~  Annulez à Tout Moment  ~  Sélectionné du Japon  ~  Belle Papeterie  ~  Curation Mensuelle  ~  Livraison Mondiale  ~  Annulez à Tout Moment"
   },
   "home": {
     "whatYouGet": "Ce que vous recevez chaque mois",
@@ -66,7 +71,10 @@
     "testimonial2": "\"La qualité est incroyable. J'ai découvert des marques que je ne connaissais pas.\"",
     "testimonial2Author": "— Yuki M., Paris",
     "testimonial3": "\"C'est devenu mon rituel mensuel — thé, papeterie et temps calme.\"",
-    "testimonial3Author": "— David L., New York"
+    "testimonial3Author": "— David L., New York",
+    "ctaSection": "Commencez Quelque Chose de Beau",
+    "ctaSectionDesc": "Rejoignez des milliers d'amateurs de papeterie qui attendent leur boîte chaque mois.",
+    "ctaSectionButton": "S'abonner Maintenant"
   },
   "howItWorks": {
     "title": "Comment ça marche",
@@ -352,7 +360,8 @@
     "terms": "Conditions d'utilisation",
     "privacy": "Politique de confidentialité",
     "replacementPolicy": "Politique de remplacement",
-    "copyright": "© {year} TOKI & TOMO. Tous droits réservés."
+    "copyright": "© {year} TOKI & TOMO. Tous droits réservés.",
+    "madeWith": "Sélectionné avec soin à Tokyo."
   },
   "pastBoxes": {
     "title": "Anciennes Box",

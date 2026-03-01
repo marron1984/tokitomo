@@ -29,7 +29,7 @@ export function RitualAction({
       onClick={handleComplete}
       disabled={loading}
       size="sm"
-      className="mt-3"
+      className="mt-4 bg-charcoal text-cream hover:bg-charcoal/90"
     >
       {loading ? "..." : label}
     </Button>

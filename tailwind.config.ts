@@ -37,6 +37,12 @@ const config: Config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        cream: "#F7F3ED",
+        warmgray: "#8C8279",
+        charcoal: "#2C2825",
+        dustyrose: "#C4A08F",
+        sage: "#8FA38B",
+        gold: "#C9A96E",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -44,7 +50,8 @@ const config: Config = {
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
-        sans: ["Inter", "system-ui", "sans-serif"],
+        serif: ["Georgia", "'Palatino Linotype'", "'Book Antiqua'", "Palatino", "serif"],
+        sans: ["'Helvetica Neue'", "Helvetica", "Arial", "system-ui", "sans-serif"],
       },
     },
   },

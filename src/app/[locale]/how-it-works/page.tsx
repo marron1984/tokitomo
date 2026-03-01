@@ -1,7 +1,10 @@
+"use client";
+
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/button";
-import { Package, Sparkles, Heart } from "lucide-react";
+import { Package, Sparkles, Heart, ArrowRight } from "lucide-react";
+import { ScrollReveal } from "@/components/scroll-reveal";
 
 export default function HowItWorksPage() {
   const t = useTranslations("howItWorks");
@@ -13,37 +16,50 @@ export default function HowItWorksPage() {
   ];
 
   return (
-    <div className="py-16 md:py-24">
-      <div className="mx-auto max-w-4xl px-4">
-        <h1 className="text-center text-4xl font-bold md:text-5xl">
-          {t("title")}
-        </h1>
-        <p className="mt-4 text-center text-lg text-muted-foreground">
-          {t("subtitle")}
-        </p>
+    <div className="py-20 md:py-32">
+      <div className="mx-auto max-w-4xl px-6">
+        <ScrollReveal>
+          <h1 className="text-center font-serif text-4xl font-semibold text-charcoal md:text-5xl">
+            {t("title")}
+          </h1>
+          <p className="mt-4 text-center text-lg text-warmgray">
+            {t("subtitle")}
+          </p>
+        </ScrollReveal>
 
-        <div className="mt-16 space-y-12">
+        <div className="mt-20 space-y-16">
           {steps.map((step, i) => (
-            <div
-              key={i}
-              className="flex flex-col items-center gap-6 md:flex-row"
-            >
-              <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-full bg-primary/10">
-                <step.icon className="h-10 w-10 text-primary" />
+            <ScrollReveal key={i} direction={i % 2 === 0 ? "left" : "right"}>
+              <div className="flex flex-col items-center gap-8 md:flex-row">
+                <div className="flex h-24 w-24 shrink-0 items-center justify-center rounded-full bg-cream shadow-sm">
+                  <step.icon className="h-10 w-10 text-dustyrose" />
+                </div>
+                <div>
+                  <h2 className="font-serif text-2xl font-semibold text-charcoal">
+                    {step.title}
+                  </h2>
+                  <p className="mt-3 leading-relaxed text-warmgray">
+                    {step.desc}
+                  </p>
+                </div>
               </div>
-              <div>
-                <h2 className="text-2xl font-bold">{step.title}</h2>
-                <p className="mt-2 text-muted-foreground">{step.desc}</p>
-              </div>
-            </div>
+            </ScrollReveal>
           ))}
         </div>
 
-        <div className="mt-16 text-center">
-          <Link href="/app/subscribe">
-            <Button size="lg">{t("cta")}</Button>
-          </Link>
-        </div>
+        <ScrollReveal>
+          <div className="mt-20 text-center">
+            <Link href="/app/subscribe">
+              <Button
+                size="lg"
+                className="btn-shimmer group bg-charcoal text-cream hover:bg-charcoal/90"
+              >
+                {t("cta")}
+                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </Button>
+            </Link>
+          </div>
+        </ScrollReveal>
       </div>
     </div>
   );

@@ -2,7 +2,6 @@ import { auth } from "@/lib/auth";
 import { getSubscriptionStatus, isActiveSubscription } from "@/lib/subscription";
 import { prisma } from "@/lib/prisma";
 import { getTranslations } from "next-intl/server";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Link } from "@/i18n/navigation";
@@ -23,18 +22,16 @@ export default async function RitualPage({
 
   if (!isActiveSubscription(subData.status)) {
     return (
-      <div className="flex min-h-[60vh] items-center justify-center py-16">
-        <Card className="w-full max-w-md text-center">
-          <CardContent className="p-8">
-            <h2 className="text-xl font-bold">{t("lockedTitle")}</h2>
-            <p className="mt-2 text-sm text-muted-foreground">
-              {t("lockedDesc")}
-            </p>
+      <div className="flex min-h-[60vh] items-center justify-center py-20">
+        <div className="w-full max-w-md text-center">
+          <div className="rounded-2xl border border-border bg-card p-10 shadow-sm">
+            <h2 className="font-serif text-xl font-semibold text-charcoal">{t("lockedTitle")}</h2>
+            <p className="mt-2 text-sm text-warmgray">{t("lockedDesc")}</p>
             <Link href="/app/subscribe">
-              <Button className="mt-4">Subscribe</Button>
+              <Button className="mt-6 bg-charcoal text-cream hover:bg-charcoal/90">Subscribe</Button>
             </Link>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
       </div>
     );
   }
@@ -52,26 +49,22 @@ export default async function RitualPage({
   const streak = calculateStreak(progress);
 
   return (
-    <div className="py-16">
-      <div className="mx-auto max-w-2xl px-4">
-        <h1 className="text-3xl font-bold">{t("title")}</h1>
-        <p className="mt-2 text-muted-foreground">{t("subtitle")}</p>
+    <div className="py-20">
+      <div className="mx-auto max-w-2xl px-6">
+        <h1 className="font-serif text-3xl font-semibold text-charcoal">{t("title")}</h1>
+        <p className="mt-2 text-warmgray">{t("subtitle")}</p>
 
-        <div className="mt-6 flex items-center gap-4">
+        <div className="mt-8 flex items-center gap-4">
           <div>
-            <span className="text-sm text-muted-foreground">
-              {t("streak")}:
-            </span>
-            <span className="ml-2 text-2xl font-bold">{streak}</span>
-            <span className="ml-1 text-sm text-muted-foreground">
-              {t("weeks")}
-            </span>
+            <span className="text-sm text-warmgray">{t("streak")}:</span>
+            <span className="ml-2 font-serif text-2xl font-bold text-charcoal">{streak}</span>
+            <span className="ml-1 text-sm text-warmgray">{t("weeks")}</span>
           </div>
           <Progress value={completedWeeks.size} max={prompts.length} className="flex-1" />
         </div>
 
         <div className="mt-4">
-          <Badge variant="secondary">
+          <Badge variant="secondary" className="bg-cream text-warmgray">
             {t("currentTheme")}: Sakura Letters
           </Badge>
         </div>
@@ -80,26 +73,25 @@ export default async function RitualPage({
           {prompts.map((prompt) => {
             const isCompleted = completedWeeks.has(prompt.weekNumber);
             return (
-              <Card key={prompt.id} className={isCompleted ? "opacity-70" : ""}>
-                <CardHeader className="pb-2">
-                  <div className="flex items-center justify-between">
-                    <CardTitle className="text-base">
-                      Week {prompt.weekNumber}: {prompt.title}
-                    </CardTitle>
-                    {isCompleted && (
-                      <Badge variant="success">{t("completed")}</Badge>
-                    )}
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground">
-                    {prompt.promptText}
-                  </p>
-                  {!isCompleted && (
-                    <RitualAction weekNumber={prompt.weekNumber} label={t("markComplete")} />
+              <div
+                key={prompt.id}
+                className={`rounded-2xl border border-border bg-card p-6 shadow-sm transition-opacity ${
+                  isCompleted ? "opacity-60" : ""
+                }`}
+              >
+                <div className="flex items-center justify-between">
+                  <h3 className="font-serif text-base font-semibold text-charcoal">
+                    Week {prompt.weekNumber}: {prompt.title}
+                  </h3>
+                  {isCompleted && (
+                    <Badge variant="success">{t("completed")}</Badge>
                   )}
-                </CardContent>
-              </Card>
+                </div>
+                <p className="mt-2 text-sm text-warmgray">{prompt.promptText}</p>
+                {!isCompleted && (
+                  <RitualAction weekNumber={prompt.weekNumber} label={t("markComplete")} />
+                )}
+              </div>
             );
           })}
         </div>

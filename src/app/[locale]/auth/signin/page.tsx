@@ -7,8 +7,8 @@ import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { trackEvent } from "@/lib/analytics";
+import Image from "next/image";
 
 export default function SignInPage() {
   const params = useParams();
@@ -32,18 +32,24 @@ export default function SignInPage() {
   };
 
   return (
-    <div className="flex min-h-[60vh] items-center justify-center py-16">
-      <Card className="w-full max-w-md">
-        <CardHeader className="text-center">
-          <CardTitle className="text-2xl">{t("signInTitle")}</CardTitle>
-          <p className="mt-2 text-sm text-muted-foreground">
+    <div className="flex min-h-[60vh] items-center justify-center py-20">
+      <div className="w-full max-w-md animate-fade-up">
+        <div className="rounded-2xl border border-border bg-card p-8 shadow-lg">
+          <div className="mb-6 flex justify-center">
+            <Image src="/logo.png" alt="TOKI & TOMO" width={60} height={60} className="rounded-sm" />
+          </div>
+          <h1 className="text-center font-serif text-2xl font-semibold text-charcoal">
+            {t("signInTitle")}
+          </h1>
+          <p className="mt-2 text-center text-sm text-warmgray">
             {t("signInSubtitle")}
           </p>
-        </CardHeader>
-        <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-4">
+
+          <form onSubmit={handleSubmit} className="mt-8 space-y-5">
             <div>
-              <Label htmlFor="email">{t("emailPlaceholder")}</Label>
+              <Label htmlFor="email" className="text-sm font-medium text-charcoal">
+                Email
+              </Label>
               <Input
                 id="email"
                 type="email"
@@ -51,15 +57,19 @@ export default function SignInPage() {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder={t("emailPlaceholder")}
                 required
-                className="mt-1"
+                className="mt-1.5 border-border bg-cream/50 focus:border-dustyrose"
               />
             </div>
-            <Button type="submit" className="w-full" disabled={loading}>
+            <Button
+              type="submit"
+              className="w-full bg-charcoal text-cream hover:bg-charcoal/90"
+              disabled={loading}
+            >
               {loading ? "..." : t("sendLink")}
             </Button>
           </form>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
     </div>
   );
 }

@@ -1,5 +1,7 @@
+"use client";
+
 import { useTranslations } from "next-intl";
-import { Card, CardContent } from "@/components/ui/card";
+import { ScrollReveal } from "@/components/scroll-reveal";
 
 export function SocialProof() {
   const t = useTranslations("home");
@@ -11,22 +13,31 @@ export function SocialProof() {
   ];
 
   return (
-    <section className="bg-secondary/20 py-16 md:py-24">
-      <div className="mx-auto max-w-6xl px-4">
-        <h2 className="text-center text-3xl font-bold md:text-4xl">
-          {t("socialProof")}
-        </h2>
+    <section className="bg-cream py-20 md:py-32">
+      <div className="mx-auto max-w-6xl px-6">
+        <ScrollReveal>
+          <h2 className="text-center font-serif text-3xl font-semibold text-charcoal md:text-4xl">
+            {t("socialProof")}
+          </h2>
+        </ScrollReveal>
 
-        <div className="mt-10 grid gap-6 md:grid-cols-3">
+        <div className="mt-14 grid gap-8 md:grid-cols-3">
           {testimonials.map((item, i) => (
-            <Card key={i}>
-              <CardContent className="p-6">
-                <p className="text-sm italic text-muted-foreground">
+            <ScrollReveal key={i} delay={i * 0.15}>
+              <div className="card-hover rounded-2xl border border-border bg-card p-8">
+                {/* Quote mark */}
+                <span className="font-serif text-5xl leading-none text-dustyrose/30">
+                  &ldquo;
+                </span>
+                <p className="mt-2 text-sm leading-relaxed text-warmgray italic">
                   {item.quote}
                 </p>
-                <p className="mt-3 text-xs font-medium">{item.author}</p>
-              </CardContent>
-            </Card>
+                <div className="mt-6 flex items-center gap-3">
+                  <div className="h-10 w-10 rounded-full bg-gradient-to-br from-dustyrose/30 to-sage/30" />
+                  <p className="text-xs font-medium text-charcoal">{item.author}</p>
+                </div>
+              </div>
+            </ScrollReveal>
           ))}
         </div>
       </div>

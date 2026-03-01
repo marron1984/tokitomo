@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "title": "TOKI & TOMO — Japanese Stationery Subscription",
-    "description": "Curated Japanese stationery delivered monthly. Stationery for your quiet time."
+    "title": "TOKI & TOMO — Stationery from Japan",
+    "description": "A curated monthly box of beautiful Japanese stationery. Discover artistry in every detail."
   },
   "nav": {
     "home": "Home",
@@ -19,65 +19,73 @@
   },
   "hero": {
     "variantA": {
-      "title": "Your monthly dose of Japanese stationery joy ✿",
-      "subtitle": "Curated pens, paper, washi tape & surprises — delivered to your door from Japan. Make every quiet moment a little more beautiful.",
-      "cta": "Subscribe Now",
+      "eyebrow": "A Monthly Ritual from Japan",
+      "title": "Stationery for Your Quiet Time",
+      "subtitle": "Each month, we hand-pick beautiful pens, papers, and washi tapes from artisans across Japan — and send them to your door. A little box of calm in a busy world.",
+      "cta": "Begin Your Collection",
       "secondaryCta": "See What's Inside"
     },
     "variantB": {
-      "title": "Japanese stationery. Delivered monthly.",
-      "subtitle": "Premium pens, paper, and supplies sourced from Japan. One box. One price. No hassle.",
+      "eyebrow": "Japanese Stationery, Curated Monthly",
+      "title": "Discover the Art of Japanese Paper",
+      "subtitle": "Premium stationery sourced from Japan's finest makers. One box. One price. Delivered worldwide.",
       "cta": "Subscribe — $60/mo",
-      "secondaryCta": "See What's Inside"
+      "secondaryCta": "How It Works"
     }
   },
   "trust": {
     "cancelAnytime": "Cancel anytime",
-    "replacementPolicy": "Free replacement for damaged items",
+    "replacementPolicy": "Free replacement guarantee",
     "secureCheckout": "Secure checkout with Stripe",
-    "customsNote": "Customs duties may apply (DDU)"
+    "customsNote": "Worldwide shipping included"
   },
   "price": {
-    "total": "$60/month delivered",
-    "breakdown": "$50 membership + $10 flat shipping",
+    "total": "$60/month",
+    "breakdown": "$50 membership + $10 flat-rate shipping",
     "perMonth": "/month"
   },
+  "marquee": {
+    "items": "Hand-picked from Japan  ~  Beautiful Stationery  ~  Monthly Curation  ~  Worldwide Shipping  ~  Cancel Anytime  ~  Hand-picked from Japan  ~  Beautiful Stationery  ~  Monthly Curation  ~  Worldwide Shipping  ~  Cancel Anytime"
+  },
   "home": {
-    "whatYouGet": "What You Get Every Month",
+    "whatYouGet": "What's in Every Box",
     "whatYouGetItems": {
       "stationery": "4–6 premium stationery items",
       "exclusive": "Japan-exclusive products",
-      "theme": "Monthly theme & curation",
-      "guide": "Stationery guide card"
+      "theme": "A new theme each month",
+      "guide": "Artisan story card"
     },
-    "howItWorks": "How It Works",
+    "howItWorks": "Three Simple Steps",
     "step1Title": "Subscribe",
-    "step1Desc": "Choose your plan and tell us your style preferences.",
+    "step1Desc": "Choose your style and join the community. Your first box ships within days.",
     "step2Title": "We Curate",
-    "step2Desc": "Our team in Japan hand-picks items around the monthly theme.",
-    "step3Title": "Enjoy",
-    "step3Desc": "Your box arrives at your door. Unbox, create, and relax.",
+    "step2Desc": "Our Tokyo-based team hand-selects items around a monthly theme, from beloved and emerging makers.",
+    "step3Title": "Unbox & Enjoy",
+    "step3Desc": "Your box arrives at your door. Slow down, explore each item, and make it part of your daily ritual.",
     "themeSpotlight": "This Month's Theme",
     "themeTitle": "Sakura Letters",
-    "themeDesc": "Celebrate spring with cherry blossom-inspired letter sets, washi tapes, and a limited-edition sakura gel pen. Write letters that bloom.",
-    "socialProof": "What Our Members Say",
-    "testimonial1": "\"Every box feels like a little gift from Japan. I look forward to it every month.\"",
-    "testimonial1Author": "— Sarah K., London",
-    "testimonial2": "\"The quality is incredible. I've discovered brands I never knew existed.\"",
-    "testimonial2Author": "— Yuki M., Paris",
-    "testimonial3": "\"It's become my monthly ritual — tea, stationery, and quiet time.\"",
-    "testimonial3Author": "— David L., New York"
+    "themeDesc": "Celebrate spring with cherry blossom-inspired letter sets, botanical washi tapes, and a limited-edition sakura gel pen. Write letters that bloom.",
+    "socialProof": "Loved by Stationery Enthusiasts",
+    "testimonial1": "\"Every box feels like a little escape. The quality is unlike anything I can find locally.\"",
+    "testimonial1Author": "Sarah K. — Brooklyn, NY",
+    "testimonial2": "\"I discovered brands I never knew existed. TOKI & TOMO has elevated my journaling.\"",
+    "testimonial2Author": "Emma R. — London, UK",
+    "testimonial3": "\"It's become my monthly ritual — a cup of tea, beautiful stationery, and quiet time.\"",
+    "testimonial3Author": "Mia L. — Melbourne, AU",
+    "ctaSection": "Start Something Beautiful",
+    "ctaSectionDesc": "Join thousands of stationery lovers who look forward to their box every month.",
+    "ctaSectionButton": "Subscribe Now"
   },
   "howItWorks": {
     "title": "How It Works",
-    "subtitle": "Three simple steps to your monthly stationery ritual.",
+    "subtitle": "From Japan to your doorstep in three simple steps.",
     "step1Title": "1. Subscribe",
-    "step1Desc": "Sign up for $60/month ($50 membership + $10 flat shipping worldwide). No hidden fees.",
+    "step1Desc": "Sign up for $60/month ($50 membership + $10 flat shipping worldwide). No hidden fees, cancel anytime.",
     "step2Title": "2. We Curate Your Box",
-    "step2Desc": "Each month, our team in Japan selects 4–6 premium items around a unique theme. Standard box weight: up to 450g.",
+    "step2Desc": "Each month, our Tokyo team selects 4–6 premium items around a unique theme. Standard box weight: up to 450g.",
     "step3Title": "3. Unbox & Enjoy",
     "step3Desc": "Your box arrives at your door. Follow the weekly Ritual prompts to make the most of every item.",
-    "cta": "Start Your Subscription"
+    "cta": "Start Your Collection"
   },
   "pricing": {
     "title": "Simple, Transparent Pricing",
@@ -98,7 +106,7 @@
       "cancel": "Cancel anytime — no lock-in"
     },
     "cta": "Subscribe Now",
-    "guarantee": "Not happy? We offer replacements for damaged or missing items."
+    "guarantee": "Not satisfied? We offer free replacements for damaged or missing items."
   },
   "faq": {
     "title": "Frequently Asked Questions",
@@ -107,35 +115,35 @@
     "q2": "How much does shipping cost?",
     "a2": "Shipping is a flat $10/month worldwide, included in your $60 total. No surprises at checkout.",
     "q3": "Do I have to pay customs duties?",
-    "a3": "Shipments are sent DDU (Delivered Duty Unpaid). Depending on your country, you may be responsible for import duties and taxes. Most small packages under $50 value clear without charges, but this varies by country.",
+    "a3": "Shipments are sent DDU (Delivered Duty Unpaid). Depending on your country, you may be responsible for import duties and taxes. Most small packages clear without charges.",
     "q4": "Can I cancel anytime?",
-    "a4": "Yes! You can cancel your subscription anytime through your account portal. You'll continue to receive boxes until the end of your current billing period.",
+    "a4": "Absolutely. Cancel through your account portal anytime. You'll receive boxes through the end of your current billing period.",
     "q5": "What if my items arrive damaged?",
-    "a5": "We'll send a replacement at no cost. Just contact us within 14 days of delivery with photos of the damage.",
+    "a5": "We'll send a free replacement. Just contact us within 14 days of delivery with photos of the damage.",
     "q6": "Do you ship everywhere?",
-    "a6": "We ship worldwide by default. However, some remote areas, special territories, or carrier-restricted regions may require availability confirmation before shipment. If delivery is not feasible, we'll contact you to offer an alternate address, delay the shipment, or issue a refund for the affected box.",
-    "q7": "When will my box ship?",
-    "a7": "Boxes ship in the first week of each month. Delivery typically takes 7–14 business days depending on your location.",
+    "a6": "We ship worldwide by default. In rare cases, some remote areas may need confirmation. If delivery isn't feasible, we'll work with you on an alternative or issue a full refund.",
+    "q7": "When does my box ship?",
+    "a7": "Boxes ship the first week of each month. Delivery takes 7–14 business days depending on your location.",
     "q8": "Can I gift a subscription?",
-    "a8": "Not yet, but we're working on it! Stay tuned."
+    "a8": "Not yet, but gift subscriptions are coming soon!"
   },
   "shipping": {
     "title": "Shipping & Customs",
     "subtitle": "Everything you need to know about delivery.",
     "flatRate": "Flat Rate Shipping",
-    "flatRateDesc": "All subscriptions include worldwide shipping at a flat rate of $10/month. This is included in your $60 monthly total.",
+    "flatRateDesc": "All subscriptions include worldwide shipping at a flat rate of $10/month, included in your $60 monthly total.",
     "delivery": "Delivery Times",
-    "deliveryDesc": "Boxes ship in the first week of each month. Standard delivery takes 7–14 business days. Tracking is provided for all shipments.",
+    "deliveryDesc": "Boxes ship the first week of each month. Standard delivery takes 7–14 business days. Tracking is provided for all shipments.",
     "customs": "Customs & Duties",
-    "customsDesc": "All shipments are sent DDU (Delivered Duty Unpaid). You may be responsible for any import duties, taxes, or customs charges levied by your country. Most packages valued under $50 clear customs without additional charges, but policies vary by country.",
+    "customsDesc": "All shipments are sent DDU (Delivered Duty Unpaid). You may be responsible for any import duties, taxes, or customs charges levied by your country.",
     "coverage": "Delivery Coverage",
-    "coverageDesc": "We ship worldwide by default. However, some remote areas, special territories, or carrier-restricted regions may require availability confirmation before shipment. If we determine that delivery to your address is not feasible, we will contact you to offer: (1) an alternate delivery address, (2) a delay until service becomes available, or (3) a full refund for the affected shipment. This policy ensures you are never charged for a box we cannot deliver.",
+    "coverageDesc": "We ship worldwide by default. Some remote areas may require confirmation. If delivery isn't feasible, we'll offer an alternate address, delay, or full refund.",
     "weight": "Box Specifications",
     "weightDesc": "Standard box weight: up to 450g. Dimensions are optimized for international shipping."
   },
   "contact": {
-    "title": "Contact Us",
-    "subtitle": "Have a question? We'd love to hear from you.",
+    "title": "Get in Touch",
+    "subtitle": "Questions, feedback, or just want to say hello? We'd love to hear from you.",
     "nameLabel": "Name",
     "emailLabel": "Email",
     "messageLabel": "Message",
@@ -148,13 +156,13 @@
       "title": "Terms of Service",
       "intro": "By using TOKI & TOMO, you agree to the following terms.",
       "subscription": "Subscription Terms",
-      "subscriptionText": "Your subscription renews monthly at $60 ($50 membership + $10 shipping). You can cancel anytime via the Customer Portal. Cancellation takes effect at the end of the current billing period.",
+      "subscriptionText": "Your subscription renews monthly at $60 ($50 membership + $10 shipping). Cancel anytime via the Customer Portal.",
       "shipping": "Shipping & Delivery",
-      "shippingText": "We ship worldwide by default. Some remote areas, special territories, or carrier-restricted regions may require availability confirmation before shipment. If delivery is not feasible, we will contact you to offer an alternate address, delay, or refund for the affected shipment.",
+      "shippingText": "We ship worldwide by default. Some remote areas may require confirmation. If delivery is not feasible, we will offer an alternate address, delay, or refund.",
       "liability": "Limitation of Liability",
-      "liabilityText": "TOKI & TOMO is not responsible for delays caused by carriers, customs processing, or force majeure events. We will make reasonable efforts to resolve any delivery issues.",
+      "liabilityText": "TOKI & TOMO is not responsible for delays caused by carriers, customs processing, or force majeure events.",
       "changes": "Changes to Terms",
-      "changesText": "We may update these terms. Continued use of the service after changes constitutes acceptance."
+      "changesText": "We may update these terms. Continued use of the service constitutes acceptance."
     },
     "privacy": {
       "title": "Privacy Policy",
@@ -166,7 +174,7 @@
       "sharing": "Third Parties",
       "sharingText": "We share data only with essential service providers: Stripe (payments), Resend (email), and our shipping partners. We never sell your data.",
       "rights": "Your Rights",
-      "rightsText": "You can request access, correction, or deletion of your data by contacting us at privacy@tokitomo.com."
+      "rightsText": "You can request access, correction, or deletion of your data by contacting privacy@tokitomo.com."
     },
     "replacement": {
       "title": "Replacement & Refund Policy",
@@ -176,24 +184,24 @@
       "missing": "Missing Items",
       "missingText": "If your box is missing items, let us know within 14 days. We'll ship the missing items or provide store credit.",
       "refunds": "Refunds",
-      "refundsText": "We don't offer refunds for boxes already shipped. If we cannot deliver to your address (see our shipping policy), we'll issue a full refund for the affected shipment.",
+      "refundsText": "We don't offer refunds for shipped boxes. If we can't deliver to your address, we'll issue a full refund.",
       "cancel": "Cancellation",
-      "cancelText": "Cancel anytime through the Customer Portal. You'll receive all boxes through the end of your current billing period."
+      "cancelText": "Cancel anytime through the Customer Portal. You'll receive all boxes through the end of your billing period."
     }
   },
   "auth": {
-    "signInTitle": "Sign in to TOKI & TOMO",
+    "signInTitle": "Welcome Back",
     "signInSubtitle": "Enter your email to receive a magic link.",
     "emailPlaceholder": "your@email.com",
     "sendLink": "Send Magic Link",
-    "verifyTitle": "Check your inbox",
+    "verifyTitle": "Check Your Inbox",
     "verifySubtitle": "We sent a magic link to your email. Click it to sign in.",
-    "verifyNote": "If you don't see it, check your spam folder.",
+    "verifyNote": "Don't see it? Check your spam folder.",
     "backToHome": "Back to Home"
   },
   "app": {
     "subscribe": {
-      "title": "Start Your Subscription",
+      "title": "Start Your Collection",
       "subtitle": "You're one step away from monthly stationery joy.",
       "cta": "Proceed to Checkout",
       "canceled": "Checkout was canceled. Ready to try again?",
@@ -220,15 +228,15 @@
       "manageSubscription": "Manage Subscription",
       "cancelNote": "Before you cancel...",
       "cancelFaq1": "Can I pause instead?",
-      "cancelFaq1Answer": "We're working on a pause feature. In the meantime, you can cancel and resubscribe when you're ready — no penalty.",
+      "cancelFaq1Answer": "We're working on a pause feature. In the meantime, you can cancel and resubscribe when ready.",
       "cancelFaq2": "Will I lose my progress?",
       "cancelFaq2Answer": "No! Your Ritual streak, Vault wishlist, and account data are preserved even after cancellation.",
       "cancelFaq3": "Can I skip a month?",
-      "cancelFaq3Answer": "Not yet, but skip functionality is coming soon. Cancel and resubscribe if needed.",
+      "cancelFaq3Answer": "Not yet, but skip functionality is coming soon.",
       "proceedToCancel": "I still want to cancel",
       "address": "Shipping Address",
       "editAddress": "Edit Address",
-      "noAddress": "No address on file — not ready to ship.",
+      "noAddress": "No shipping address on file.",
       "addAddress": "Add Address",
       "style": "Style Preference",
       "noStyle": "Not set yet",
@@ -245,18 +253,18 @@
       "postalCode": "Postal Code",
       "save": "Save Address",
       "saved": "Address saved!",
-      "quizTitle": "What's Your Stationery Style?",
-      "quizSubtitle": "Step 1 of 2 — Help us personalize your experience.",
+      "quizTitle": "What's Your Style?",
+      "quizSubtitle": "Step 1 of 2 — Help us personalize your box.",
       "styleKawaii": "Kawaii",
-      "styleKawaiiDesc": "Cute, colorful, and playful designs",
+      "styleKawaiiDesc": "Cute, colorful, and playful",
       "styleMinimal": "Minimal",
-      "styleMinimalDesc": "Clean, simple, and functional tools",
+      "styleMinimalDesc": "Clean, simple, and functional",
       "styleTraditional": "Traditional",
-      "styleTraditionalDesc": "Classic Japanese aesthetics and craftsmanship",
+      "styleTraditionalDesc": "Classic Japanese craftsmanship",
       "styleStudy": "Study",
-      "styleStudyDesc": "Organized, productive, and academic-focused",
+      "styleStudyDesc": "Organized and productivity-focused",
       "selectStyle": "Select Your Style",
-      "continue": "Continue to Address"
+      "continue": "Continue"
     },
     "ritual": {
       "title": "Weekly Ritual",
@@ -273,7 +281,7 @@
       "title": "Past Box Vault",
       "subtitle": "Explore items from previous boxes.",
       "addToWishlist": "Add to Wishlist",
-      "removeFromWishlist": "Remove from Wishlist",
+      "removeFromWishlist": "Remove",
       "onWishlist": "On your wishlist",
       "wishlistNotify": "We'll let you know if this becomes available again.",
       "lockedTitle": "Members-only catalog",
@@ -290,7 +298,7 @@
       "step1": "Share your code with a friend",
       "step2": "They sign up and subscribe",
       "step3": "They get a welcome bonus (extra sticker pack)",
-      "step4": "You get a bonus item in your next box after their first payment",
+      "step4": "You get a bonus item in your next box",
       "stats": "Your Referral Stats",
       "totalReferred": "Friends Referred",
       "totalPaid": "Paid Subscriptions",
@@ -352,11 +360,12 @@
     "terms": "Terms of Service",
     "privacy": "Privacy Policy",
     "replacementPolicy": "Replacement Policy",
-    "copyright": "© {year} TOKI & TOMO. All rights reserved."
+    "copyright": "© {year} TOKI & TOMO. All rights reserved.",
+    "madeWith": "Curated with care in Tokyo."
   },
   "pastBoxes": {
     "title": "Past Boxes",
-    "subtitle": "A glimpse into our previous curations. Subscribe to browse the full vault.",
+    "subtitle": "A glimpse into our previous curations.",
     "cta": "Subscribe to explore the full vault"
   },
   "journal": {
@@ -364,7 +373,7 @@
     "subtitle": "Stories, tips, and inspiration from the world of Japanese stationery.",
     "comingSoon": "New articles coming soon. Subscribe to stay updated.",
     "sampleTitle": "The Art of Letter Writing in Japan",
-    "sampleExcerpt": "In Japan, letter writing is more than communication — it's an art form. From seasonal greetings to carefully chosen stationery, discover the traditions behind tegami (手紙).",
+    "sampleExcerpt": "In Japan, letter writing is more than communication — it's an art form. From seasonal greetings to carefully chosen stationery, discover the traditions behind tegami.",
     "readMore": "Read More"
   }
 }

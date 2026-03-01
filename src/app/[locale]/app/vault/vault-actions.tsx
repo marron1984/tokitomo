@@ -41,10 +41,14 @@ export function VaultActions({
       disabled={loading}
       variant={wishlisted ? "secondary" : "outline"}
       size="sm"
-      className="mt-3 w-full"
+      className={`mt-4 w-full transition-all ${
+        wishlisted
+          ? "bg-dustyrose/10 text-dustyrose hover:bg-dustyrose/20"
+          : "border-charcoal/20 text-charcoal hover:bg-charcoal/5"
+      }`}
     >
       <Heart
-        className={`mr-1.5 h-3.5 w-3.5 ${wishlisted ? "fill-current" : ""}`}
+        className={`mr-1.5 h-3.5 w-3.5 transition-all ${wishlisted ? "fill-current text-dustyrose" : ""}`}
       />
       {wishlisted ? removeLabel : addLabel}
     </Button>

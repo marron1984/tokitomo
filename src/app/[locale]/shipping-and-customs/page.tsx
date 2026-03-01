@@ -1,5 +1,7 @@
+"use client";
+
 import { useTranslations } from "next-intl";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { ScrollReveal } from "@/components/scroll-reveal";
 
 export default function ShippingPage() {
   const t = useTranslations("shipping");
@@ -13,25 +15,29 @@ export default function ShippingPage() {
   ];
 
   return (
-    <div className="py-16 md:py-24">
-      <div className="mx-auto max-w-4xl px-4">
-        <h1 className="text-center text-4xl font-bold">{t("title")}</h1>
-        <p className="mt-4 text-center text-muted-foreground">
-          {t("subtitle")}
-        </p>
+    <div className="py-20 md:py-32">
+      <div className="mx-auto max-w-4xl px-6">
+        <ScrollReveal>
+          <h1 className="text-center font-serif text-4xl font-semibold text-charcoal">
+            {t("title")}
+          </h1>
+          <p className="mt-4 text-center text-warmgray">
+            {t("subtitle")}
+          </p>
+        </ScrollReveal>
 
-        <div className="mt-10 space-y-6">
+        <div className="mt-12 space-y-6">
           {sections.map((section, i) => (
-            <Card key={i}>
-              <CardHeader>
-                <CardTitle className="text-lg">{section.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">
+            <ScrollReveal key={i} delay={i * 0.1}>
+              <div className="rounded-2xl border border-border bg-card p-8 shadow-sm">
+                <h2 className="font-serif text-lg font-semibold text-charcoal">
+                  {section.title}
+                </h2>
+                <p className="mt-3 leading-relaxed text-warmgray text-sm">
                   {section.content}
                 </p>
-              </CardContent>
-            </Card>
+              </div>
+            </ScrollReveal>
           ))}
         </div>
       </div>

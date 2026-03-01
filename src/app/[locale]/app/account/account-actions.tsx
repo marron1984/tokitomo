@@ -40,38 +40,43 @@ export function AccountActions({
 
   return (
     <div className="space-y-4">
-      <Button onClick={handleManage} disabled={loading} variant="outline">
+      <Button
+        onClick={handleManage}
+        disabled={loading}
+        variant="outline"
+        className="border-charcoal/20 text-charcoal hover:bg-charcoal/5"
+      >
         {loading ? "..." : t("manageSubscription")}
       </Button>
 
       {!showCancel ? (
         <button
           onClick={() => setShowCancel(true)}
-          className="block text-sm text-muted-foreground underline"
+          className="block text-sm text-warmgray underline transition-colors hover:text-charcoal"
         >
           {t("cancelNote")}
         </button>
       ) : (
-        <div className="space-y-3 rounded-lg border bg-secondary/30 p-4">
-          <h4 className="font-medium">{t("cancelNote")}</h4>
+        <div className="space-y-3 rounded-xl border border-border bg-cream/50 p-5 animate-fade-up">
+          <h4 className="font-serif font-medium text-charcoal">{t("cancelNote")}</h4>
           <Accordion type="single" collapsible>
-            <AccordionItem value="q1">
-              <AccordionTrigger className="text-sm">
+            <AccordionItem value="q1" className="border-b border-border/50">
+              <AccordionTrigger className="text-sm text-charcoal">
                 {t("cancelFaq1")}
               </AccordionTrigger>
-              <AccordionContent>{t("cancelFaq1Answer")}</AccordionContent>
+              <AccordionContent className="text-warmgray">{t("cancelFaq1Answer")}</AccordionContent>
             </AccordionItem>
-            <AccordionItem value="q2">
-              <AccordionTrigger className="text-sm">
+            <AccordionItem value="q2" className="border-b border-border/50">
+              <AccordionTrigger className="text-sm text-charcoal">
                 {t("cancelFaq2")}
               </AccordionTrigger>
-              <AccordionContent>{t("cancelFaq2Answer")}</AccordionContent>
+              <AccordionContent className="text-warmgray">{t("cancelFaq2Answer")}</AccordionContent>
             </AccordionItem>
-            <AccordionItem value="q3">
-              <AccordionTrigger className="text-sm">
+            <AccordionItem value="q3" className="border-b border-border/50">
+              <AccordionTrigger className="text-sm text-charcoal">
                 {t("cancelFaq3")}
               </AccordionTrigger>
-              <AccordionContent>{t("cancelFaq3Answer")}</AccordionContent>
+              <AccordionContent className="text-warmgray">{t("cancelFaq3Answer")}</AccordionContent>
             </AccordionItem>
           </Accordion>
           <Button onClick={handleManage} variant="destructive" size="sm">

@@ -5,7 +5,6 @@ import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { formatDate } from "@/lib/utils";
 import { AccountActions } from "./account-actions";
 
@@ -47,105 +46,99 @@ export default async function AccountPage({
           : t("inactive");
 
   return (
-    <div className="py-16">
-      <div className="mx-auto max-w-2xl px-4">
-        <h1 className="text-3xl font-bold">{t("title")}</h1>
+    <div className="py-20">
+      <div className="mx-auto max-w-2xl px-6">
+        <h1 className="font-serif text-3xl font-semibold text-charcoal">{t("title")}</h1>
 
-        <div className="mt-8 space-y-6">
+        <div className="mt-10 space-y-6">
           {/* Profile */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-lg">{t("profile")}</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-2 text-sm">
+          <div className="rounded-2xl border border-border bg-card p-6 shadow-sm">
+            <h2 className="font-serif text-lg font-semibold text-charcoal">{t("profile")}</h2>
+            <div className="mt-4 space-y-2 text-sm">
               <p>
-                <span className="text-muted-foreground">Email:</span>{" "}
-                {user?.email}
+                <span className="text-warmgray">Email:</span>{" "}
+                <span className="text-charcoal">{user?.email}</span>
               </p>
               <p>
-                <span className="text-muted-foreground">{t("style")}:</span>{" "}
-                {user?.preferenceStyle ?? t("noStyle")}
+                <span className="text-warmgray">{t("style")}:</span>{" "}
+                <span className="text-charcoal capitalize">{user?.preferenceStyle ?? t("noStyle")}</span>
                 {!user?.preferenceStyle && (
                   <Link
                     href="/app/onboarding/style-quiz"
-                    className="ml-2 text-primary underline"
+                    className="ml-2 text-dustyrose underline"
                   >
                     {t("takeQuiz")}
                   </Link>
                 )}
               </p>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
 
           {/* Subscription */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-lg">{t("subscription")}</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-3">
+          <div className="rounded-2xl border border-border bg-card p-6 shadow-sm">
+            <h2 className="font-serif text-lg font-semibold text-charcoal">{t("subscription")}</h2>
+            <div className="mt-4 space-y-3">
               <div className="flex items-center gap-2">
-                <span className="text-sm text-muted-foreground">
-                  {t("status")}:
-                </span>
+                <span className="text-sm text-warmgray">{t("status")}:</span>
                 <Badge variant={statusVariant}>{statusLabel}</Badge>
               </div>
 
               {subData.subscription?.currentPeriodEnd && (
-                <p className="text-sm text-muted-foreground">
-                  {subData.subscription.cancelAtPeriodEnd
-                    ? t("endsOn")
-                    : t("renewsOn")}
-                  :{" "}
+                <p className="text-sm text-warmgray">
+                  {subData.subscription.cancelAtPeriodEnd ? t("endsOn") : t("renewsOn")}:{" "}
                   {formatDate(subData.subscription.currentPeriodEnd, locale)}
                 </p>
               )}
 
               {subData.status === "none" && (
                 <Link href="/app/subscribe">
-                  <Button>{nav("subscribe")}</Button>
+                  <Button className="bg-charcoal text-cream hover:bg-charcoal/90">
+                    {nav("subscribe")}
+                  </Button>
                 </Link>
               )}
 
               {isActiveSubscription(subData.status) && subData.stripeCustomerId && (
                 <AccountActions locale={locale} hasStripeCustomer={true} />
               )}
-            </CardContent>
-          </Card>
+            </div>
+          </div>
 
           {/* Address */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="text-lg">{t("address")}</CardTitle>
-            </CardHeader>
-            <CardContent>
+          <div className="rounded-2xl border border-border bg-card p-6 shadow-sm">
+            <h2 className="font-serif text-lg font-semibold text-charcoal">{t("address")}</h2>
+            <div className="mt-4">
               {address ? (
-                <div className="space-y-1 text-sm">
+                <div className="space-y-1 text-sm text-warmgray">
                   <p>{address.line1}</p>
                   {address.line2 && <p>{address.line2}</p>}
                   <p>
                     {address.city}
-                    {address.state ? `, ${address.state}` : ""}{" "}
-                    {address.postalCode}
+                    {address.state ? `, ${address.state}` : ""} {address.postalCode}
                   </p>
                   <p>{address.country}</p>
                   <Link href="/app/onboarding/address">
-                    <Button variant="outline" size="sm" className="mt-2">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="mt-3 border-charcoal/20 text-charcoal hover:bg-charcoal/5"
+                    >
                       {t("editAddress")}
                     </Button>
                   </Link>
                 </div>
               ) : (
                 <div>
-                  <p className="text-sm text-destructive">{t("noAddress")}</p>
+                  <p className="text-sm text-warmgray">{t("noAddress")}</p>
                   <Link href="/app/onboarding/address">
-                    <Button size="sm" className="mt-2">
+                    <Button size="sm" className="mt-3 bg-charcoal text-cream hover:bg-charcoal/90">
                       {t("addAddress")}
                     </Button>
                   </Link>
                 </div>
               )}
-            </CardContent>
-          </Card>
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -19,12 +19,14 @@
   },
   "hero": {
     "variantA": {
+      "eyebrow": "日本からの月に一度のリチュアル",
       "title": "日本文具の喜びを毎月あなたに ✿",
       "subtitle": "ペン、紙、マスキングテープ、サプライズ — 日本からあなたのドアへ。静かなひとときをもっと美しく。",
       "cta": "今すぐ登録",
       "secondaryCta": "中身を見る"
     },
     "variantB": {
+      "eyebrow": "毎月届く、厳選された日本の文具",
       "title": "日本文具。毎月届く。",
       "subtitle": "日本から厳選されたプレミアムペン、紙、文具。ワンボックス。ワンプライス。シンプル。",
       "cta": "登録する — $60/月",
@@ -41,6 +43,9 @@
     "total": "$60/月（配送込み）",
     "breakdown": "$50 メンバーシップ + $10 配送料（一律）",
     "perMonth": "/月"
+  },
+  "marquee": {
+    "items": "日本から厳選  ~  美しい文房具  ~  毎月届くキュレーション  ~  世界中に配送  ~  いつでも解約可能  ~  日本から厳選  ~  美しい文房具  ~  毎月届くキュレーション  ~  世界中に配送  ~  いつでも解約可能"
   },
   "home": {
     "whatYouGet": "毎月届くもの",
@@ -66,7 +71,10 @@
     "testimonial2": "「品質が素晴らしい。知らなかったブランドに出会えました。」",
     "testimonial2Author": "— Yuki M.、パリ",
     "testimonial3": "「月に一度のリチュアルになりました — お茶と文具と静かな時間。」",
-    "testimonial3Author": "— David L.、ニューヨーク"
+    "testimonial3Author": "— David L.、ニューヨーク",
+    "ctaSection": "美しい何かを始めよう",
+    "ctaSectionDesc": "毎月届くボックスを楽しみにしている文具愛好家の仲間入りをしませんか。",
+    "ctaSectionButton": "今すぐ登録"
   },
   "howItWorks": {
     "title": "ご利用方法",
@@ -352,7 +360,8 @@
     "terms": "利用規約",
     "privacy": "プライバシーポリシー",
     "replacementPolicy": "交換ポリシー",
-    "copyright": "© {year} TOKI & TOMO. All rights reserved."
+    "copyright": "© {year} TOKI & TOMO. All rights reserved.",
+    "madeWith": "東京で心を込めてキュレーション。"
   },
   "pastBoxes": {
     "title": "過去のボックス",

@@ -3,9 +3,9 @@
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Check } from "lucide-react";
 import { trackEvent } from "@/lib/analytics";
+import { ScrollReveal } from "@/components/scroll-reveal";
 
 export function PricingSection() {
   const t = useTranslations("pricing");
@@ -20,52 +20,63 @@ export function PricingSection() {
   ];
 
   return (
-    <section className="py-16 md:py-24">
-      <div className="mx-auto max-w-4xl px-4 text-center">
-        <h2 className="text-3xl font-bold md:text-4xl">{t("title")}</h2>
-        <p className="mt-3 text-muted-foreground">{t("subtitle")}</p>
+    <section className="py-20 md:py-32">
+      <div className="mx-auto max-w-4xl px-6 text-center">
+        <ScrollReveal>
+          <h2 className="font-serif text-3xl font-semibold text-charcoal md:text-4xl">
+            {t("title")}
+          </h2>
+          <p className="mt-3 text-warmgray">{t("subtitle")}</p>
+        </ScrollReveal>
 
-        <Card className="mx-auto mt-10 max-w-md">
-          <CardHeader className="pb-2">
-            <CardTitle className="text-xl">{t("planName")}</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-6">
-            <div className="space-y-1">
-              <div className="flex items-baseline justify-center gap-1">
-                <span className="text-4xl font-bold">{t("totalPrice")}</span>
-              </div>
-              <div className="text-sm text-muted-foreground">
-                <span>
-                  {t("membership")}: {t("membershipPrice")} + {t("shipping")}:{" "}
-                  {t("shippingPrice")}
+        <ScrollReveal delay={0.15}>
+          <div className="mx-auto mt-12 max-w-md overflow-hidden rounded-2xl border-2 border-charcoal/10 bg-card shadow-lg">
+            <div className="bg-charcoal px-8 py-6 text-center">
+              <p className="text-xs font-medium uppercase tracking-widest text-cream/60">
+                {t("planName")}
+              </p>
+              <div className="mt-2 flex items-baseline justify-center gap-1">
+                <span className="font-serif text-5xl font-bold text-cream">
+                  {t("totalPrice")}
                 </span>
               </div>
+              <p className="mt-2 text-sm text-cream/60">
+                {t("membership")}: {t("membershipPrice")} + {t("shipping")}:{" "}
+                {t("shippingPrice")}
+              </p>
             </div>
 
-            <ul className="space-y-2 text-left text-sm">
-              {features.map((feature, i) => (
-                <li key={i} className="flex items-start gap-2">
-                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                  <span>{feature}</span>
-                </li>
-              ))}
-            </ul>
+            <div className="p-8">
+              <ul className="space-y-3 text-left text-sm">
+                {features.map((feature, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <div className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-sage/20">
+                      <Check className="h-3 w-3 text-sage" />
+                    </div>
+                    <span className="text-warmgray">{feature}</span>
+                  </li>
+                ))}
+              </ul>
 
-            <Link
-              href="/app/subscribe"
-              className="block"
-              onClick={() =>
-                trackEvent("cta_click", { location: "pricing_section" })
-              }
-            >
-              <Button size="lg" className="w-full">
-                {t("cta")}
-              </Button>
-            </Link>
+              <Link
+                href="/app/subscribe"
+                className="mt-8 block"
+                onClick={() =>
+                  trackEvent("cta_click", { location: "pricing_section" })
+                }
+              >
+                <Button
+                  size="lg"
+                  className="btn-shimmer w-full bg-charcoal text-cream hover:bg-charcoal/90"
+                >
+                  {t("cta")}
+                </Button>
+              </Link>
 
-            <p className="text-xs text-muted-foreground">{t("guarantee")}</p>
-          </CardContent>
-        </Card>
+              <p className="mt-4 text-xs text-warmgray">{t("guarantee")}</p>
+            </div>
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   );

@@ -1,16 +1,24 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import Image from "next/image";
 
 export function Header({ locale }: { locale: string }) {
   const t = useTranslations("nav");
   const pathname = usePathname();
   const router = useRouter();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const navItems = [
     { href: "/how-it-works" as const, label: t("howItWorks") },
@@ -24,36 +32,54 @@ export function Header({ locale }: { locale: string }) {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
-        <Link href="/" className="flex items-center space-x-2">
-          <span className="text-xl font-bold tracking-tight">
-            TOKI <span className="text-primary">&</span> TOMO
-          </span>
+    <header
+      className={`sticky top-0 z-50 w-full transition-all duration-500 ${
+        scrolled
+          ? "glass border-b shadow-sm"
+          : "bg-transparent"
+      }`}
+    >
+      <div className="mx-auto flex h-20 max-w-6xl items-center justify-between px-6">
+        {/* Logo */}
+        <Link href="/" className="flex items-center gap-3 transition-opacity hover:opacity-80">
+          <Image
+            src="/logo.png"
+            alt="TOKI & TOMO"
+            width={44}
+            height={44}
+            className="rounded-sm"
+          />
+          <div className="hidden sm:block">
+            <span className="font-serif text-lg font-semibold tracking-wide text-charcoal">
+              TOKI & TOMO
+            </span>
+          </div>
         </Link>
 
-        <nav className="hidden items-center space-x-6 md:flex">
+        {/* Desktop nav */}
+        <nav className="hidden items-center gap-8 md:flex">
           {navItems.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+              className="relative text-sm font-medium text-warmgray transition-colors duration-300 hover:text-charcoal after:absolute after:bottom-[-4px] after:left-0 after:h-[1px] after:w-0 after:bg-charcoal after:transition-all after:duration-300 hover:after:w-full"
             >
               {item.label}
             </Link>
           ))}
         </nav>
 
-        <div className="hidden items-center space-x-3 md:flex">
-          <div className="flex items-center space-x-1 text-xs">
+        {/* Desktop actions */}
+        <div className="hidden items-center gap-4 md:flex">
+          <div className="flex items-center gap-1 text-xs text-warmgray">
             {(["en", "fr", "ja"] as const).map((l) => (
               <button
                 key={l}
                 onClick={() => switchLocale(l)}
-                className={`rounded px-1.5 py-0.5 transition-colors ${
+                className={`rounded-sm px-2 py-1 transition-all duration-300 ${
                   locale === l
-                    ? "bg-primary text-primary-foreground"
-                    : "text-muted-foreground hover:text-foreground"
+                    ? "bg-charcoal font-medium text-cream"
+                    : "hover:bg-muted"
                 }`}
               >
                 {l.toUpperCase()}
@@ -61,66 +87,89 @@ export function Header({ locale }: { locale: string }) {
             ))}
           </div>
           <Link href="/auth/signin">
-            <Button variant="ghost" size="sm">
+            <Button variant="ghost" size="sm" className="text-warmgray hover:text-charcoal">
               {t("signIn")}
             </Button>
           </Link>
           <Link href="/app/subscribe">
-            <Button size="sm">{t("subscribe")}</Button>
+            <Button size="sm" className="btn-shimmer bg-charcoal text-cream hover:bg-charcoal/90">
+              {t("subscribe")}
+            </Button>
           </Link>
         </div>
 
+        {/* Mobile toggle */}
         <button
-          className="md:hidden"
+          className="text-charcoal md:hidden"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle menu"
         >
-          {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          <div className="relative h-6 w-6">
+            <Menu
+              className={`absolute inset-0 h-6 w-6 transition-all duration-300 ${
+                mobileOpen ? "rotate-90 opacity-0" : "rotate-0 opacity-100"
+              }`}
+            />
+            <X
+              className={`absolute inset-0 h-6 w-6 transition-all duration-300 ${
+                mobileOpen ? "rotate-0 opacity-100" : "-rotate-90 opacity-0"
+              }`}
+            />
+          </div>
         </button>
       </div>
 
-      {mobileOpen && (
-        <div className="border-t bg-background px-4 py-4 md:hidden">
-          <nav className="flex flex-col space-y-3">
-            {navItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="text-sm font-medium"
-                onClick={() => setMobileOpen(false)}
+      {/* Mobile menu */}
+      <div
+        className={`overflow-hidden border-t bg-background transition-all duration-500 ease-out md:hidden ${
+          mobileOpen ? "max-h-[400px] opacity-100" : "max-h-0 border-t-0 opacity-0"
+        }`}
+      >
+        <nav className="flex flex-col gap-1 px-6 py-4">
+          {navItems.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="rounded-md px-3 py-2.5 text-sm font-medium text-warmgray transition-colors hover:bg-muted hover:text-charcoal"
+              onClick={() => setMobileOpen(false)}
+            >
+              {item.label}
+            </Link>
+          ))}
+
+          <div className="my-2 h-px bg-border" />
+
+          <div className="flex items-center gap-2 px-3 py-2">
+            {(["en", "fr", "ja"] as const).map((l) => (
+              <button
+                key={l}
+                onClick={() => {
+                  switchLocale(l);
+                  setMobileOpen(false);
+                }}
+                className={`rounded-sm px-2.5 py-1 text-xs transition-all ${
+                  locale === l
+                    ? "bg-charcoal font-medium text-cream"
+                    : "text-warmgray hover:bg-muted"
+                }`}
               >
-                {item.label}
-              </Link>
+                {l.toUpperCase()}
+              </button>
             ))}
-            <div className="flex items-center space-x-2 pt-2">
-              {(["en", "fr", "ja"] as const).map((l) => (
-                <button
-                  key={l}
-                  onClick={() => {
-                    switchLocale(l);
-                    setMobileOpen(false);
-                  }}
-                  className={`rounded px-2 py-1 text-xs ${
-                    locale === l
-                      ? "bg-primary text-primary-foreground"
-                      : "text-muted-foreground"
-                  }`}
-                >
-                  {l.toUpperCase()}
-                </button>
-              ))}
-            </div>
-            <Link href="/auth/signin" onClick={() => setMobileOpen(false)}>
-              <Button variant="ghost" className="w-full justify-start">
-                {t("signIn")}
-              </Button>
-            </Link>
-            <Link href="/app/subscribe" onClick={() => setMobileOpen(false)}>
-              <Button className="w-full">{t("subscribe")}</Button>
-            </Link>
-          </nav>
-        </div>
-      )}
+          </div>
+
+          <Link href="/auth/signin" onClick={() => setMobileOpen(false)}>
+            <Button variant="ghost" className="w-full justify-start text-warmgray">
+              {t("signIn")}
+            </Button>
+          </Link>
+          <Link href="/app/subscribe" onClick={() => setMobileOpen(false)}>
+            <Button className="w-full bg-charcoal text-cream hover:bg-charcoal/90">
+              {t("subscribe")}
+            </Button>
+          </Link>
+        </nav>
+      </div>
     </header>
   );
 }

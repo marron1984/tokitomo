@@ -25,9 +25,15 @@ export function FaqAccordion() {
   return (
     <Accordion type="single" collapsible className="w-full">
       {items.map((item, i) => (
-        <AccordionItem key={i} value={`item-${i}`}>
-          <AccordionTrigger className="text-left">{item.q}</AccordionTrigger>
-          <AccordionContent className="text-muted-foreground">
+        <AccordionItem
+          key={i}
+          value={`item-${i}`}
+          className="border-b border-border/60"
+        >
+          <AccordionTrigger className="py-5 text-left font-serif text-base font-medium text-charcoal hover:text-dustyrose transition-colors">
+            {item.q}
+          </AccordionTrigger>
+          <AccordionContent className="pb-5 leading-relaxed text-warmgray">
             {item.a}
           </AccordionContent>
         </AccordionItem>

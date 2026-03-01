@@ -5,8 +5,7 @@ import { useParams, useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Check, AlertCircle } from "lucide-react";
+import { Check, AlertCircle, ArrowRight } from "lucide-react";
 import { trackEvent } from "@/lib/analytics";
 
 export default function SubscribePage() {
@@ -46,47 +45,57 @@ export default function SubscribePage() {
   ];
 
   return (
-    <div className="flex min-h-[60vh] items-center justify-center py-16">
-      <Card className="w-full max-w-md">
-        <CardHeader className="text-center">
-          <CardTitle className="text-2xl">{t("title")}</CardTitle>
-          <p className="mt-2 text-sm text-muted-foreground">{t("subtitle")}</p>
-        </CardHeader>
-        <CardContent className="space-y-6">
-          {canceled && (
-            <div className="flex items-center gap-2 rounded-md bg-yellow-50 p-3 text-sm text-yellow-800">
-              <AlertCircle className="h-4 w-4" />
-              {t("canceled")}
-            </div>
-          )}
-
-          <div className="text-center">
-            <p className="text-3xl font-bold">{pt("totalPrice")}</p>
-            <p className="text-sm text-muted-foreground">
-              {pt("membership")}: {pt("membershipPrice")} + {pt("shipping")}:{" "}
-              {pt("shippingPrice")}
-            </p>
+    <div className="flex min-h-[60vh] items-center justify-center py-20">
+      <div className="w-full max-w-md animate-fade-up">
+        <div className="overflow-hidden rounded-2xl border border-border bg-card shadow-lg">
+          <div className="bg-charcoal p-8 text-center">
+            <h1 className="font-serif text-2xl font-semibold text-cream">
+              {t("title")}
+            </h1>
+            <p className="mt-2 text-sm text-cream/60">{t("subtitle")}</p>
           </div>
 
-          <ul className="space-y-2 text-sm">
-            {features.map((feature, i) => (
-              <li key={i} className="flex items-start gap-2">
-                <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                <span>{feature}</span>
-              </li>
-            ))}
-          </ul>
+          <div className="p-8 space-y-6">
+            {canceled && (
+              <div className="flex items-center gap-2 rounded-lg bg-gold/10 p-3 text-sm text-charcoal">
+                <AlertCircle className="h-4 w-4 shrink-0" />
+                {t("canceled")}
+              </div>
+            )}
 
-          <Button
-            onClick={handleCheckout}
-            disabled={loading}
-            className="w-full"
-            size="lg"
-          >
-            {loading ? "..." : t("cta")}
-          </Button>
-        </CardContent>
-      </Card>
+            <div className="text-center">
+              <p className="font-serif text-3xl font-bold text-charcoal">{pt("totalPrice")}</p>
+              <p className="mt-1 text-sm text-warmgray">
+                {pt("membership")}: {pt("membershipPrice")} + {pt("shipping")}:{" "}
+                {pt("shippingPrice")}
+              </p>
+            </div>
+
+            <ul className="space-y-2.5 text-sm">
+              {features.map((feature, i) => (
+                <li key={i} className="flex items-start gap-3">
+                  <div className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-sage/20">
+                    <Check className="h-3 w-3 text-sage" />
+                  </div>
+                  <span className="text-warmgray">{feature}</span>
+                </li>
+              ))}
+            </ul>
+
+            <Button
+              onClick={handleCheckout}
+              disabled={loading}
+              className="btn-shimmer group w-full bg-charcoal text-cream hover:bg-charcoal/90"
+              size="lg"
+            >
+              {loading ? "..." : t("cta")}
+              {!loading && (
+                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+              )}
+            </Button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

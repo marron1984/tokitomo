@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Copy, Check, Gift, Users, Star } from "lucide-react";
@@ -39,98 +38,73 @@ export function ReferralClient({ locale }: { locale: string }) {
     : "";
 
   return (
-    <div className="py-16">
-      <div className="mx-auto max-w-2xl px-4">
-        <h1 className="text-3xl font-bold">{t("title")}</h1>
-        <p className="mt-2 text-muted-foreground">{t("subtitle")}</p>
+    <div className="py-20">
+      <div className="mx-auto max-w-2xl px-6">
+        <h1 className="font-serif text-3xl font-semibold text-charcoal">{t("title")}</h1>
+        <p className="mt-2 text-warmgray">{t("subtitle")}</p>
 
-        <Card className="mt-8">
-          <CardHeader>
-            <CardTitle className="text-lg">{t("yourCode")}</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="flex items-center gap-3">
-              <code className="flex-1 rounded-md bg-secondary px-4 py-3 text-center text-lg font-bold tracking-widest">
-                {data.code}
-              </code>
-              <Button onClick={handleCopy} variant="outline" size="icon">
-                {copied ? (
-                  <Check className="h-4 w-4" />
-                ) : (
-                  <Copy className="h-4 w-4" />
-                )}
-              </Button>
+        {/* Referral Code */}
+        <div className="mt-8 rounded-2xl border border-border bg-card p-6 shadow-sm">
+          <h2 className="font-serif text-lg font-semibold text-charcoal">{t("yourCode")}</h2>
+          <div className="mt-4 flex items-center gap-3">
+            <code className="flex-1 rounded-lg bg-cream px-4 py-3 text-center font-serif text-lg font-bold tracking-widest text-charcoal">
+              {data.code}
+            </code>
+            <Button
+              onClick={handleCopy}
+              variant="outline"
+              size="icon"
+              className="border-charcoal/20 hover:bg-charcoal/5"
+            >
+              {copied ? (
+                <Check className="h-4 w-4 text-sage" />
+              ) : (
+                <Copy className="h-4 w-4" />
+              )}
+            </Button>
+          </div>
+          <p className="mt-3 text-sm text-warmgray">
+            {t("shareLink")}{" "}
+            <span className="break-all text-xs text-dustyrose">{shareUrl}</span>
+          </p>
+        </div>
+
+        {/* How it works */}
+        <div className="mt-6 rounded-2xl border border-border bg-card p-6 shadow-sm">
+          <h2 className="font-serif text-lg font-semibold text-charcoal">{t("howItWorks")}</h2>
+          <ol className="mt-4 space-y-3 text-sm">
+            {[t("step1"), t("step2"), t("step3"), t("step4")].map((step, i) => (
+              <li key={i} className="flex items-start gap-3">
+                <Badge variant="outline" className="shrink-0 rounded-full bg-cream text-charcoal">
+                  {i + 1}
+                </Badge>
+                <span className="text-warmgray">{step}</span>
+              </li>
+            ))}
+          </ol>
+        </div>
+
+        {/* Stats */}
+        <div className="mt-6 rounded-2xl border border-border bg-card p-6 shadow-sm">
+          <h2 className="font-serif text-lg font-semibold text-charcoal">{t("stats")}</h2>
+          <div className="mt-4 grid grid-cols-3 gap-4 text-center">
+            <div className="rounded-xl bg-cream p-4">
+              <Users className="mx-auto h-5 w-5 text-warmgray" />
+              <p className="mt-2 font-serif text-2xl font-bold text-charcoal">{data.totalReferred}</p>
+              <p className="text-xs text-warmgray">{t("totalReferred")}</p>
             </div>
-            <p className="text-sm text-muted-foreground">
-              {t("shareLink")} <span className="break-all text-xs">{shareUrl}</span>
-            </p>
-          </CardContent>
-        </Card>
-
-        <Card className="mt-6">
-          <CardHeader>
-            <CardTitle className="text-lg">{t("howItWorks")}</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <ol className="space-y-3 text-sm">
-              <li className="flex items-start gap-2">
-                <Badge variant="outline" className="shrink-0">
-                  1
-                </Badge>
-                {t("step1")}
-              </li>
-              <li className="flex items-start gap-2">
-                <Badge variant="outline" className="shrink-0">
-                  2
-                </Badge>
-                {t("step2")}
-              </li>
-              <li className="flex items-start gap-2">
-                <Badge variant="outline" className="shrink-0">
-                  3
-                </Badge>
-                {t("step3")}
-              </li>
-              <li className="flex items-start gap-2">
-                <Badge variant="outline" className="shrink-0">
-                  4
-                </Badge>
-                {t("step4")}
-              </li>
-            </ol>
-          </CardContent>
-        </Card>
-
-        <Card className="mt-6">
-          <CardHeader>
-            <CardTitle className="text-lg">{t("stats")}</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-3 gap-4 text-center">
-              <div>
-                <Users className="mx-auto h-6 w-6 text-muted-foreground" />
-                <p className="mt-1 text-2xl font-bold">{data.totalReferred}</p>
-                <p className="text-xs text-muted-foreground">
-                  {t("totalReferred")}
-                </p>
-              </div>
-              <div>
-                <Gift className="mx-auto h-6 w-6 text-muted-foreground" />
-                <p className="mt-1 text-2xl font-bold">{data.totalPaid}</p>
-                <p className="text-xs text-muted-foreground">
-                  {t("totalPaid")}
-                </p>
-              </div>
-              <div>
-                <Star className="mx-auto h-6 w-6 text-muted-foreground" />
-                <p className="mt-1 text-2xl font-bold">{data.totalPaid}</p>
-                <p className="text-xs text-muted-foreground">
-                  {t("bonusesEarned")}
-                </p>
-              </div>
+            <div className="rounded-xl bg-cream p-4">
+              <Gift className="mx-auto h-5 w-5 text-warmgray" />
+              <p className="mt-2 font-serif text-2xl font-bold text-charcoal">{data.totalPaid}</p>
+              <p className="text-xs text-warmgray">{t("totalPaid")}</p>
             </div>
-          </CardContent>
-        </Card>
+            <div className="rounded-xl bg-cream p-4">
+              <Star className="mx-auto h-5 w-5 text-warmgray" />
+              <p className="mt-2 font-serif text-2xl font-bold text-charcoal">{data.totalPaid}</p>
+              <p className="text-xs text-warmgray">{t("bonusesEarned")}</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
