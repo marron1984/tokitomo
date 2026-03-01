@@ -84,9 +84,41 @@
   --ring: 12 42% 58%;
 }
 
-/* Locale-specific font stacks */
+/* === LOCALE-SPECIFIC STRUCTURAL OVERRIDES === */
+
+/* 🇫🇷 France — editorial magazine feel */
+[data-locale="fr"] { letter-spacing: 0.01em; }
+[data-locale="fr"] .font-serif { font-weight: 400; letter-spacing: 0.02em; }
+[data-locale="fr"] h1, [data-locale="fr"] h2 { font-weight: 500; letter-spacing: 0.03em; }
+[data-locale="fr"] .btn-shimmer::after { display: none; }
+[data-locale="fr"] .animate-pulse-glow { animation: none; }
+[data-locale="fr"] .divider-ornament { gap: 2rem; }
+[data-locale="fr"] .divider-ornament::before,
+[data-locale="fr"] .divider-ornament::after { height: 0.5px; }
+[data-locale="fr"] .card-hover:hover { transform: translateY(-2px); }
+[data-locale="fr"] .grain-overlay::before { opacity: 0.2; }
+
+/* 🇯🇵 Japan — maximum 間 (ma), zen restraint */
 [data-locale="ja"] { font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", system-ui, sans-serif; }
 [data-locale="ja"] .font-serif { font-family: "Hiragino Mincho ProN", "Yu Mincho", "MS PMincho", serif; }
+[data-locale="ja"] h1, [data-locale="ja"] h2 { letter-spacing: 0.08em; }
+[data-locale="ja"] p { line-height: 1.9; }
+[data-locale="ja"] .card-hover:hover { transform: translateY(-1px); box-shadow: none; }
+[data-locale="ja"] .btn-shimmer::after { display: none; }
+[data-locale="ja"] .animate-pulse-glow { animation: none; }
+[data-locale="ja"] .animate-fade-up { animation-duration: 1.8s; }
+[data-locale="ja"] .animate-scale-up { animation-duration: 1.8s; }
+[data-locale="ja"] .animate-fade-in { animation-duration: 2.4s; }
+[data-locale="ja"] .grain-overlay::before { opacity: 0.5; }
+
+/* 🇪🇸 Spain/LatAm — warm, expressive, community-driven */
+[data-locale="es"] { letter-spacing: -0.005em; }
+[data-locale="es"] h1, [data-locale="es"] h2 { font-weight: 700; }
+[data-locale="es"] .card-hover:hover { transform: translateY(-5px); box-shadow: 0 24px 80px -12px hsl(var(--primary) / 0.1); }
+[data-locale="es"] .animate-fade-up { animation-duration: 0.9s; }
+[data-locale="es"] .animate-scale-up { animation-duration: 0.9s; }
+[data-locale="es"] .animate-marquee { animation-duration: 35s; }
+[data-locale="es"] .grain-overlay::before { opacity: 0.15; }
 
 @layer base {
   * { @apply border-border; }

@@ -99,9 +99,9 @@ export function Footer() {
         </div>
 
         {/* Bottom — quiet, with ornament */}
-        <div className="mt-16 border-t border-cream/8 pt-10 text-center">
-          <div className="mx-auto mb-4 text-xs tracking-[0.3em] text-cream/20">&#x2022;</div>
-          <p className="text-xs text-cream/30">
+        <div className="mt-12 border-t border-cream/8 pt-8 text-center md:mt-16 md:pt-10">
+          <div className="mx-auto mb-3 text-xs tracking-[0.3em] text-cream/20 md:mb-4">&#x2022;</div>
+          <p className="text-[10px] text-cream/30 md:text-xs">
             {t("copyright", { year: new Date().getFullYear() })}
           </p>
         </div>
