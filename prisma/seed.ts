@@ -163,7 +163,47 @@ async function main() {
       },
     });
   }
-  console.log(`  ✓ ${frPrompts.length} ritual prompts seeded (fr)\n`);
+  console.log(`  ✓ ${frPrompts.length} ritual prompts seeded (fr)`);
+
+  // ── Spanish ritual prompts (first 12 weeks) ──────────────────
+
+  console.log("Creating ritual prompts (es)...");
+
+  const esPrompts: { week: number; title: string; prompt: string }[] = [
+    { week: 1, title: "Primeras Marcas", prompt: "Escribe tu nombre despacio con un bolígrafo nuevo. Observa cómo la tinta se encuentra con el papel. ¿Qué dice tu letra sobre ti hoy?" },
+    { week: 2, title: "Páginas Matutinas", prompt: "Antes de mirar el teléfono, escribe tres frases sobre cómo te sientes. Deja que las palabras sean imperfectas." },
+    { week: 3, title: "Carta a un Desconocido", prompt: "Escribe una carta breve a alguien que nunca conocerás. ¿Qué quisieras que supiera sobre este momento?" },
+    { week: 4, title: "Historia de un Color", prompt: "Elige un color de tu papelería. Usa solo ese color para escribir sobre un recuerdo que te evoca." },
+    { week: 5, title: "El Sobre", prompt: "Decora un sobre con washi tape. Dirígelo a ti mismo/a, dentro de un año. ¿Qué deseas?" },
+    { week: 6, title: "Lista de Gratitud", prompt: "Escribe cinco cosas pequeñas por las que estás agradecido/a hoy. Usa tu letra más bonita para cada una." },
+    { week: 7, title: "Práctica de Haiku", prompt: "Escribe tres haikus sobre cosas cotidianas que notaste esta semana. 5-7-5 sílabas. Abraza la simplicidad." },
+    { week: 8, title: "Diario de Pegatinas", prompt: "Crea una pequeña página de collage con tus pegatinas. Escribe una palabra al lado de cada una que capture un sentimiento." },
+    { week: 9, title: "Borrador de Correspondencia", prompt: "Redacta el primer párrafo de una carta a un amigo por correspondencia imaginario en Tokio. Preséntate y presenta tu mundo." },
+    { week: 10, title: "Diario del Clima", prompt: "Describe el clima de hoy usando solo detalles sensoriales — lo que ves, oyes, sientes, hueles. Sin juicios, solo observación." },
+    { week: 11, title: "Cosas Favoritas", prompt: "Haz una lista de 10 objetos en tu casa que te den alegría silenciosa. Dibuja un pequeño boceto junto a cada uno." },
+    { week: 12, title: "Té y Escritura", prompt: "Prepara una taza de té o café. Escribe mientras lo bebes. Describe la calidez, el sabor, el vapor." },
+  ];
+
+  for (const rp of esPrompts) {
+    await prisma.ritualPrompt.upsert({
+      where: {
+        locale_weekNumber_themeMonth: {
+          locale: "es",
+          weekNumber: rp.week,
+          themeMonth: "sakura-letters",
+        },
+      },
+      update: { title: rp.title, promptText: rp.prompt },
+      create: {
+        locale: "es",
+        weekNumber: rp.week,
+        title: rp.title,
+        promptText: rp.prompt,
+        themeMonth: "sakura-letters",
+      },
+    });
+  }
+  console.log(`  ✓ ${esPrompts.length} ritual prompts seeded (es)\n`);
 
   // ── Vault Items — Past Box Catalog ───────────────────────────
 
@@ -240,6 +280,25 @@ async function main() {
     { locale: "fr", month: "2026-03", title: "Autocollants Cerisier", description: "Autocollants sakura estampés à la feuille d'or. 2 feuilles de pétales, branches et scènes de hanami découpées." },
     { locale: "fr", month: "2026-03", title: "Washi Tape — Hanami", description: "Washi tape large format représentant un paysage continu de cerisiers en fleurs, parfait pour les bordures de journal." },
     { locale: "fr", month: "2026-03", title: "Cahier Printemps", description: "Cahier A6 avec couverture embossée sakura et 52 pages de papier MD crème — une page pour chaque semaine de l'année." },
+
+    // ─ Spanish locale items ─
+    { locale: "es", month: "2026-01", title: "Cuaderno Tomoe River", description: "Cuaderno A5 con el legendario papel Tomoe River — ultrafino, ideal para pluma estilográfica, con un sutil tono crema que realza cada color de tinta." },
+    { locale: "es", month: "2026-01", title: "Tinta Sailor Shikiori", description: "Mini botella de tinta estacional Sailor en 'Yuki-akari' (luz de nieve) — un azul grisáceo suave y luminoso inspirado en la luz de luna sobre nieve fresca." },
+    { locale: "es", month: "2026-01", title: "Goma Monte Fuji", description: "Goma de borrar Plus Air-in con forma del Monte Fuji. Al borrar, la cima nevada se revela gradualmente." },
+    { locale: "es", month: "2026-01", title: "Set Washi — Ume", description: "Tres rollos de washi tape con motivos de flor de ciruelo en rojo, rosa y dorado — motivos tradicionales de Año Nuevo." },
+    { locale: "es", month: "2026-01", title: "Postales de Año Nuevo", description: "5 postales en impresión tipográfica sobre papel grueso de algodón, con diseños geométricos minimalistas inspirados en las tradiciones japonesas de Año Nuevo." },
+
+    { locale: "es", month: "2026-02", title: "Set de Cartas Midori — Rosa", description: "Delicado set de cartas con sobres forrados en papel de seda rosa empolvado, con bordes florales en relieve." },
+    { locale: "es", month: "2026-02", title: "Pilot Kakuno — Rosa Suave", description: "Pluma estilográfica para principiantes con una plumilla con carita sonriente. Escritura suave incluso para quienes nunca han usado pluma." },
+    { locale: "es", month: "2026-02", title: "Washi Tape Corazones", description: "Washi tape semitransparente con pequeños corazones en acuarela — lo suficientemente sutil para el uso diario." },
+    { locale: "es", month: "2026-02", title: "Set Bolígrafos Gel — Tonos Cálidos", description: "Set de 4 Pentel Energel en tonos cálidos exclusivos: rosa empolvado, terracota, burdeos y dorado champán." },
+    { locale: "es", month: "2026-02", title: "Kit Origami Corazón", description: "Papel de origami premium en degradado de rojos y rosas con instrucciones ilustradas para 3 diseños de corazones." },
+
+    { locale: "es", month: "2026-03", title: "Papel de Carta Sakura", description: "Papel de carta washi hecho a mano con pétalos de sakura prensados. Cada hoja es única — fragmentos reales de flores incrustados en las fibras." },
+    { locale: "es", month: "2026-03", title: "Pentel Fude Touch — Set Sakura", description: "Rotuladores punta pincel en 4 colores inspirados en el sakura: rosa pálido, rosa intenso, verde primavera y gris cálido." },
+    { locale: "es", month: "2026-03", title: "Pegatinas de Cerezo", description: "Pegatinas de sakura con estampado en lámina dorada. 2 hojas de pétalos, ramas y escenas de hanami troqueladas." },
+    { locale: "es", month: "2026-03", title: "Washi Tape — Hanami", description: "Washi tape de formato ancho con un paisaje continuo de cerezos en flor, perfecto para bordes de diario." },
+    { locale: "es", month: "2026-03", title: "Cuaderno Primavera", description: "Cuaderno A6 con portada en relieve de sakura y 52 páginas de papel MD crema — una página para cada semana del año." },
   ];
 
   for (const item of vaultItems) {

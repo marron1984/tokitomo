@@ -72,7 +72,7 @@ export function Header({ locale }: { locale: string }) {
         {/* Desktop actions */}
         <div className="hidden items-center gap-4 md:flex">
           <div className="flex items-center gap-1 text-xs text-warmgray">
-            {(["en", "fr", "ja"] as const).map((l) => (
+            {(["en", "fr", "ja", "es"] as const).map((l) => (
               <button
                 key={l}
                 onClick={() => switchLocale(l)}
@@ -140,7 +140,7 @@ export function Header({ locale }: { locale: string }) {
           <div className="my-2 h-px bg-border" />
 
           <div className="flex items-center gap-2 px-3 py-2">
-            {(["en", "fr", "ja"] as const).map((l) => (
+            {(["en", "fr", "ja", "es"] as const).map((l) => (
               <button
                 key={l}
                 onClick={() => {

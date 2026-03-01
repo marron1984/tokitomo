@@ -57,7 +57,7 @@ export function SocialProof() {
             <div className="absolute inset-0 bg-gradient-to-t from-charcoal/40 to-transparent" />
             <div className="absolute bottom-8 left-8 right-8 text-center">
               <p className="font-serif text-xl font-semibold text-cream md:text-2xl">
-                Slow down. Write beautifully.
+                {t("lifestyleTagline")}
               </p>
             </div>
           </div>

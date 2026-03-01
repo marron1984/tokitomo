@@ -23,6 +23,7 @@ export async function generateMetadata({
         en: "/en",
         fr: "/fr",
         ja: "/ja",
+        es: "/es",
       },
     },
     openGraph: {
@@ -43,14 +44,14 @@ export default async function LocaleLayout({
 }) {
   const { locale } = await params;
 
-  if (!routing.locales.includes(locale as "en" | "fr" | "ja")) {
+  if (!routing.locales.includes(locale as "en" | "fr" | "ja" | "es")) {
     notFound();
   }
 
   const messages = await getMessages();
 
   return (
-    <html lang={locale} className="antialiased">
+    <html lang={locale} data-locale={locale} className="antialiased">
       <body className="font-sans text-foreground">
         <NextIntlClientProvider messages={messages}>
           <AnalyticsProvider>
