@@ -2,6 +2,7 @@ import NextAuth from "next-auth";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import Resend from "next-auth/providers/resend";
 import { prisma } from "./prisma";
+import { sendWelcomeEmail } from "./resend";
 
 const adapter = PrismaAdapter(prisma);
 
@@ -16,6 +17,18 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   pages: {
     signIn: "/en/auth/signin",
     verifyRequest: "/en/auth/verify-request",
+  },
+  events: {
+    async createUser({ user }) {
+      // Send welcome email when a new user is created
+      if (user.email) {
+        try {
+          await sendWelcomeEmail(user.email, user.name);
+        } catch (e) {
+          console.error("Failed to send welcome email:", e);
+        }
+      }
+    },
   },
   callbacks: {
     async jwt({ token, user }) {

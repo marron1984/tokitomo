@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { formatDate } from "@/lib/utils";
 import { AccountActions } from "./account-actions";
+import { EmailPreferences } from "./email-preferences";
 
 export default async function AccountPage({
   params,
@@ -102,6 +103,13 @@ export default async function AccountPage({
                 <AccountActions locale={locale} hasStripeCustomer={true} />
               )}
             </div>
+          </div>
+
+          {/* Email Preferences */}
+          <div className="rounded-2xl border border-border bg-card p-6 shadow-sm">
+            <h2 className="font-serif text-lg font-semibold text-charcoal">Email Preferences</h2>
+            <p className="mt-1 text-xs text-warmgray">Choose which emails you&apos;d like to receive</p>
+            <EmailPreferences />
           </div>
 
           {/* Address */}

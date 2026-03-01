@@ -4,6 +4,11 @@ import { NextResponse } from "next/server";
 import Stripe from "stripe";
 import { getStripe } from "@/lib/stripe";
 import { prisma } from "@/lib/prisma";
+import {
+  sendSubscriptionConfirmedEmail,
+  sendReferralBonusEmail,
+  sendPaymentFailedEmail,
+} from "@/lib/resend";
 
 export async function POST(request: Request) {
   const body = await request.text();
@@ -116,6 +121,19 @@ async function handleCheckoutComplete(session: Stripe.Checkout.Session) {
         cancelAtPeriodEnd: sub.cancel_at_period_end,
       },
     });
+  }
+
+  // Send subscription confirmation email
+  const user = await prisma.user.findUnique({
+    where: { id: userId },
+    select: { email: true, name: true },
+  });
+  if (user?.email) {
+    try {
+      await sendSubscriptionConfirmedEmail(user.email, user.name);
+    } catch (e) {
+      console.error("Failed to send subscription confirmed email:", e);
+    }
   }
 }
 
@@ -244,6 +262,23 @@ async function handleInvoicePaid(invoice: Stripe.Invoice) {
         note: `Friend ${stripeCustomer.userId} paid first invoice`,
       },
     });
+
+    // Send referral bonus email to referrer
+    const referrer = await prisma.user.findUnique({
+      where: { id: redemption.referral.ownerUserId },
+      select: { email: true, name: true },
+    });
+    const referredUser = await prisma.user.findUnique({
+      where: { id: stripeCustomer.userId },
+      select: { email: true },
+    });
+    if (referrer?.email && referredUser?.email) {
+      try {
+        await sendReferralBonusEmail(referrer.email, referrer.name, referredUser.email);
+      } catch (e) {
+        console.error("Failed to send referral bonus email:", e);
+      }
+    }
   }
 }
 
@@ -267,4 +302,17 @@ async function handleInvoiceFailed(invoice: Stripe.Invoice) {
     where: { userId: stripeCustomer.userId },
     data: { lastInvoiceStatus: "failed" },
   });
+
+  // Send payment failed email
+  const user = await prisma.user.findUnique({
+    where: { id: stripeCustomer.userId },
+    select: { email: true, name: true },
+  });
+  if (user?.email) {
+    try {
+      await sendPaymentFailedEmail(user.email, user.name);
+    } catch (e) {
+      console.error("Failed to send payment failed email:", e);
+    }
+  }
 }
