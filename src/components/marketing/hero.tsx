@@ -26,77 +26,91 @@ export function Hero() {
 
   return (
     <section className="relative overflow-hidden bg-cream">
-      <div className="relative mx-auto max-w-7xl px-6 pb-10 pt-12 md:pb-20 md:pt-20">
-        <div className="grid items-center gap-12 md:grid-cols-2 md:gap-16">
+      <div className="relative mx-auto max-w-7xl px-5 pb-6 pt-6 md:px-6 md:pb-20 md:pt-20">
 
-          {/* Left — Text + CTA */}
+        {/* Mobile: Product photo FIRST — visual hook before text */}
+        <div className={`relative mb-6 md:hidden ${mounted ? "animate-scale-up" : "opacity-0"}`}>
+          <div className="relative mx-auto aspect-[4/3] max-w-sm overflow-hidden rounded-2xl">
+            <Image
+              src="/hero-box.png"
+              alt="TOKI & TOMO subscription box with fountain pen and cherry blossoms"
+              fill
+              className="object-cover"
+              priority
+              sizes="100vw"
+            />
+          </div>
+        </div>
+
+        <div className="grid items-center gap-12 md:grid-cols-2 md:gap-16">
+          {/* Text + CTA */}
           <div className={`max-w-xl ${mounted ? "animate-fade-up" : "opacity-0"}`}>
-            <p className="text-xs font-medium uppercase tracking-[0.25em] text-warmgray/70">
+            <p className="text-[10px] font-medium uppercase tracking-[0.25em] text-warmgray/70 md:text-xs">
               {t(`${heroKey}.eyebrow`)}
             </p>
 
-            <h1 className="mt-5 font-serif text-4xl font-semibold leading-[1.15] tracking-tight text-charcoal md:text-5xl lg:text-6xl">
+            <h1 className="mt-3 font-serif text-3xl font-semibold leading-[1.15] tracking-tight text-charcoal md:mt-5 md:text-5xl lg:text-6xl">
               {t(`${heroKey}.title`)}
             </h1>
 
-            <p className="mt-6 max-w-md text-base leading-relaxed text-warmgray md:text-lg">
+            <p className="mt-4 text-sm leading-relaxed text-warmgray md:mt-6 md:max-w-md md:text-lg">
               {t(`${heroKey}.subtitle`)}
             </p>
 
-            {/* Price */}
-            <div className="mt-8">
-              <p className="font-serif text-2xl font-semibold text-charcoal">
+            {/* Price — prominent on mobile */}
+            <div className="mt-5 md:mt-8">
+              <p className="font-serif text-2xl font-semibold text-charcoal md:text-2xl">
                 {t("price.total")}
               </p>
-              <p className="mt-1 text-sm text-warmgray/70">
+              <p className="mt-0.5 text-xs text-warmgray/70 md:mt-1 md:text-sm">
                 {t("price.breakdown")}
               </p>
             </div>
 
-            {/* CTAs */}
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Link href="/app/subscribe" onClick={handleCtaClick}>
+            {/* CTAs — full width on mobile */}
+            <div className="mt-5 flex flex-col gap-2.5 md:mt-8 md:flex-row md:gap-3">
+              <Link href="/app/subscribe" onClick={handleCtaClick} className="w-full md:w-auto">
                 <Button
                   size="lg"
-                  className="btn-shimmer animate-pulse-glow min-w-[200px] bg-charcoal text-base text-cream hover:bg-charcoal/90"
+                  className="btn-shimmer animate-pulse-glow h-14 w-full text-base font-semibold bg-charcoal text-cream hover:bg-charcoal/90 md:h-12 md:min-w-[200px] md:w-auto"
                 >
                   {t(`${heroKey}.cta`)}
                 </Button>
               </Link>
-              <Link href="/how-it-works">
+              <Link href="/how-it-works" className="w-full md:w-auto">
                 <Button
                   variant="outline"
                   size="lg"
-                  className="min-w-[200px] border-charcoal/15 text-base text-charcoal hover:bg-charcoal/5"
+                  className="h-12 w-full border-charcoal/15 text-base text-charcoal hover:bg-charcoal/5 md:min-w-[200px] md:w-auto"
                 >
                   {t(`${heroKey}.secondaryCta`)}
                 </Button>
               </Link>
             </div>
 
-            {/* Trust badges */}
-            <div className="mt-8 flex flex-wrap items-center gap-4 text-xs text-warmgray/60">
-              <span className="flex items-center gap-1.5">
-                <Shield className="h-3.5 w-3.5" />
+            {/* Trust badges — horizontal scroll on mobile */}
+            <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2 text-[10px] text-warmgray/60 md:mt-8 md:text-xs">
+              <span className="flex items-center gap-1">
+                <Shield className="h-3 w-3 md:h-3.5 md:w-3.5" />
                 {t("trust.cancelAnytime")}
               </span>
-              <span className="flex items-center gap-1.5">
-                <RefreshCw className="h-3.5 w-3.5" />
+              <span className="flex items-center gap-1">
+                <RefreshCw className="h-3 w-3 md:h-3.5 md:w-3.5" />
                 {t("trust.replacementPolicy")}
               </span>
-              <span className="flex items-center gap-1.5">
-                <CreditCard className="h-3.5 w-3.5" />
+              <span className="flex items-center gap-1">
+                <CreditCard className="h-3 w-3 md:h-3.5 md:w-3.5" />
                 {t("trust.secureCheckout")}
               </span>
-              <span className="flex items-center gap-1.5">
-                <Globe className="h-3.5 w-3.5" />
+              <span className="flex items-center gap-1">
+                <Globe className="h-3 w-3 md:h-3.5 md:w-3.5" />
                 {t("trust.customsNote")}
               </span>
             </div>
           </div>
 
-          {/* Right — Product box photo */}
-          <div className={`relative ${mounted ? "animate-scale-up stagger-2" : "opacity-0"}`}>
+          {/* Desktop: Product box photo (hidden on mobile — shown above) */}
+          <div className={`relative hidden md:block ${mounted ? "animate-scale-up stagger-2" : "opacity-0"}`}>
             <div className="relative aspect-square overflow-hidden rounded-3xl">
               <Image
                 src="/hero-box.png"
@@ -104,17 +118,16 @@ export function Hero() {
                 fill
                 className="object-cover"
                 priority
-                sizes="(max-width: 768px) 100vw, 50vw"
+                sizes="50vw"
               />
             </div>
-            {/* Decorative glow */}
             <div className="pointer-events-none absolute -inset-8 -z-10 rounded-full bg-gradient-to-br from-dustyrose/15 via-transparent to-gold/10 blur-3xl" />
           </div>
         </div>
       </div>
 
-      {/* Full-width lifestyle banner */}
-      <div className={`relative mt-6 h-[340px] overflow-hidden md:mt-10 md:h-[480px] ${mounted ? "animate-fade-in stagger-4" : "opacity-0"}`}>
+      {/* Lifestyle banner — shorter on mobile */}
+      <div className={`relative mt-2 h-[220px] overflow-hidden md:mt-10 md:h-[480px] ${mounted ? "animate-fade-in stagger-4" : "opacity-0"}`}>
         <Image
           src="/hero-lifestyle.png"
           alt="Writing under cherry blossoms in Kyoto with TOKI & TOMO stationery"
@@ -127,12 +140,12 @@ export function Hero() {
       </div>
 
       {/* Marquee */}
-      <div className="overflow-hidden border-y border-charcoal/5 bg-charcoal/95 py-3.5">
+      <div className="overflow-hidden border-y border-charcoal/5 bg-charcoal/95 py-2.5 md:py-3.5">
         <div className="animate-marquee flex whitespace-nowrap">
-          <span className="mx-10 text-[10px] font-medium uppercase tracking-[0.2em] text-cream/50">
+          <span className="mx-10 text-[9px] font-medium uppercase tracking-[0.2em] text-cream/50 md:text-[10px]">
             {t("marquee.items")}
           </span>
-          <span className="mx-10 text-[10px] font-medium uppercase tracking-[0.2em] text-cream/50">
+          <span className="mx-10 text-[9px] font-medium uppercase tracking-[0.2em] text-cream/50 md:text-[10px]">
             {t("marquee.items")}
           </span>
         </div>

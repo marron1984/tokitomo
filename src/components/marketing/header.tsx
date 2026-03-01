@@ -39,15 +39,15 @@ export function Header({ locale }: { locale: string }) {
           : "bg-transparent"
       }`}
     >
-      <div className="mx-auto flex h-20 max-w-6xl items-center justify-between px-6">
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-3 transition-opacity hover:opacity-80">
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 md:h-20 md:px-6">
+        {/* Logo — compact on mobile */}
+        <Link href="/" className="flex items-center gap-2 transition-opacity hover:opacity-80 md:gap-3">
           <Image
             src="/logo.png"
             alt="TOKI & TOMO"
-            width={52}
-            height={52}
-            className="rounded-sm"
+            width={40}
+            height={40}
+            className="rounded-sm md:h-[52px] md:w-[52px]"
           />
           <div className="hidden sm:block">
             <span className="font-serif text-lg font-semibold tracking-wide text-charcoal">
@@ -98,39 +98,46 @@ export function Header({ locale }: { locale: string }) {
           </Link>
         </div>
 
-        {/* Mobile toggle */}
-        <button
-          className="text-charcoal md:hidden"
-          onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label="Toggle menu"
-        >
-          <div className="relative h-6 w-6">
-            <Menu
-              className={`absolute inset-0 h-6 w-6 transition-all duration-300 ${
-                mobileOpen ? "rotate-90 opacity-0" : "rotate-0 opacity-100"
-              }`}
-            />
-            <X
-              className={`absolute inset-0 h-6 w-6 transition-all duration-300 ${
-                mobileOpen ? "rotate-0 opacity-100" : "-rotate-90 opacity-0"
-              }`}
-            />
-          </div>
-        </button>
+        {/* Mobile: Subscribe button + hamburger */}
+        <div className="flex items-center gap-2 md:hidden">
+          <Link href="/app/subscribe">
+            <Button size="sm" className="btn-shimmer h-9 bg-charcoal px-4 text-xs font-semibold text-cream hover:bg-charcoal/90">
+              {t("subscribe")}
+            </Button>
+          </Link>
+          <button
+            className="text-charcoal p-1"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label="Toggle menu"
+          >
+            <div className="relative h-6 w-6">
+              <Menu
+                className={`absolute inset-0 h-6 w-6 transition-all duration-300 ${
+                  mobileOpen ? "rotate-90 opacity-0" : "rotate-0 opacity-100"
+                }`}
+              />
+              <X
+                className={`absolute inset-0 h-6 w-6 transition-all duration-300 ${
+                  mobileOpen ? "rotate-0 opacity-100" : "-rotate-90 opacity-0"
+                }`}
+              />
+            </div>
+          </button>
+        </div>
       </div>
 
       {/* Mobile menu */}
       <div
         className={`overflow-hidden border-t bg-background transition-all duration-500 ease-out md:hidden ${
-          mobileOpen ? "max-h-[400px] opacity-100" : "max-h-0 border-t-0 opacity-0"
+          mobileOpen ? "max-h-[420px] opacity-100" : "max-h-0 border-t-0 opacity-0"
         }`}
       >
-        <nav className="flex flex-col gap-1 px-6 py-4">
+        <nav className="flex flex-col gap-0.5 px-4 py-3">
           {navItems.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="rounded-md px-3 py-2.5 text-sm font-medium text-warmgray transition-colors hover:bg-muted hover:text-charcoal"
+              className="rounded-lg px-3 py-3 text-sm font-medium text-warmgray transition-colors hover:bg-muted hover:text-charcoal active:bg-muted"
               onClick={() => setMobileOpen(false)}
             >
               {item.label}
@@ -139,7 +146,7 @@ export function Header({ locale }: { locale: string }) {
 
           <div className="my-2 h-px bg-border" />
 
-          <div className="flex items-center gap-2 px-3 py-2">
+          <div className="flex items-center gap-1.5 px-3 py-2">
             {(["en", "fr", "ja", "es"] as const).map((l) => (
               <button
                 key={l}
@@ -147,7 +154,7 @@ export function Header({ locale }: { locale: string }) {
                   switchLocale(l);
                   setMobileOpen(false);
                 }}
-                className={`rounded-sm px-2.5 py-1 text-xs transition-all ${
+                className={`rounded-md px-2.5 py-1.5 text-xs transition-all ${
                   locale === l
                     ? "bg-charcoal font-medium text-cream"
                     : "text-warmgray hover:bg-muted"
@@ -164,7 +171,7 @@ export function Header({ locale }: { locale: string }) {
             </Button>
           </Link>
           <Link href="/app/subscribe" onClick={() => setMobileOpen(false)}>
-            <Button className="w-full bg-charcoal text-cream hover:bg-charcoal/90">
+            <Button className="h-12 w-full bg-charcoal text-sm font-semibold text-cream hover:bg-charcoal/90">
               {t("subscribe")}
             </Button>
           </Link>

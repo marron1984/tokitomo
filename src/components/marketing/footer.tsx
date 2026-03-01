@@ -9,15 +9,15 @@ export function Footer() {
   const nav = useTranslations("nav");
 
   return (
-    <footer className="relative overflow-hidden border-t bg-charcoal text-cream/80">
+    <footer className="relative overflow-hidden border-t bg-charcoal pb-24 text-cream/80 md:pb-0">
       {/* Subtle atmospheric glow */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute -left-20 top-10 h-[200px] w-[200px] rounded-full bg-dustyrose/3 animate-ink-dissolve" />
         <div className="absolute -right-16 bottom-0 h-[150px] w-[150px] rounded-full bg-sage/3 animate-ink-dissolve stagger-4" />
       </div>
 
-      <div className="relative mx-auto max-w-6xl px-6 py-20">
-        <div className="grid gap-12 md:grid-cols-4">
+      <div className="relative mx-auto max-w-6xl px-5 py-12 md:px-6 md:py-20">
+        <div className="grid grid-cols-2 gap-8 md:grid-cols-4 md:gap-12">
           {/* Brand */}
           <div className="space-y-5">
             <div className="flex items-center gap-3">

@@ -32,20 +32,21 @@ export default function SignInPage() {
   };
 
   return (
-    <div className="flex min-h-[60vh] items-center justify-center py-20">
+    <div className="flex min-h-[60vh] items-start justify-center px-0 py-8 md:items-center md:px-6 md:py-20">
       <div className="w-full max-w-md animate-fade-up">
-        <div className="rounded-2xl border border-border bg-card p-8 shadow-lg">
-          <div className="mb-6 flex justify-center">
-            <Image src="/logo.png" alt="TOKI & TOMO" width={60} height={60} className="rounded-sm" />
+        {/* Edge-to-edge on mobile */}
+        <div className="border-y border-border bg-card px-5 py-8 shadow-lg md:rounded-2xl md:border md:p-8">
+          <div className="mb-5 flex justify-center md:mb-6">
+            <Image src="/logo.png" alt="TOKI & TOMO" width={52} height={52} className="rounded-sm md:h-[60px] md:w-[60px]" />
           </div>
-          <h1 className="text-center font-serif text-2xl font-semibold text-charcoal">
+          <h1 className="text-center font-serif text-xl font-semibold text-charcoal md:text-2xl">
             {t("signInTitle")}
           </h1>
-          <p className="mt-2 text-center text-sm text-warmgray">
+          <p className="mt-1.5 text-center text-sm text-warmgray">
             {t("signInSubtitle")}
           </p>
 
-          <form onSubmit={handleSubmit} className="mt-8 space-y-5">
+          <form onSubmit={handleSubmit} className="mt-6 space-y-4 md:mt-8 md:space-y-5">
             <div>
               <Label htmlFor="email" className="text-sm font-medium text-charcoal">
                 Email
@@ -57,12 +58,14 @@ export default function SignInPage() {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder={t("emailPlaceholder")}
                 required
-                className="mt-1.5 border-border bg-cream/50 focus:border-dustyrose"
+                autoComplete="email"
+                inputMode="email"
+                className="mt-1.5 h-12 border-border bg-cream/50 text-base focus:border-dustyrose md:h-10 md:text-sm"
               />
             </div>
             <Button
               type="submit"
-              className="w-full bg-charcoal text-cream hover:bg-charcoal/90"
+              className="h-14 w-full bg-charcoal text-[15px] font-semibold text-cream hover:bg-charcoal/90 md:h-10 md:text-sm md:font-medium"
               disabled={loading}
             >
               {loading ? "..." : t("sendLink")}
