@@ -2,13 +2,10 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
-import { Inter } from "next/font/google";
 import { Header } from "@/components/marketing/header";
 import { Footer } from "@/components/marketing/footer";
 import { StickyCta } from "@/components/marketing/sticky-cta";
 import { AnalyticsProvider } from "@/components/analytics-provider";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export async function generateMetadata({
   params,
@@ -52,8 +49,8 @@ export default async function LocaleLayout({
   const messages = await getMessages();
 
   return (
-    <html lang={locale} className={inter.className}>
-      <body>
+    <html lang={locale}>
+      <body className="font-sans">
         <NextIntlClientProvider messages={messages}>
           <AnalyticsProvider>
             <Header locale={locale} />

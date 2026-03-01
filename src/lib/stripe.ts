@@ -1,9 +1,15 @@
 import Stripe from "stripe";
 
-export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: "2024-12-18.acacia",
-  typescript: true,
-});
+let _stripe: Stripe | null = null;
+
+export function getStripe(): Stripe {
+  if (!_stripe) {
+    _stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+      typescript: true,
+    });
+  }
+  return _stripe;
+}
 
 export async function createCheckoutSession({
   userId,
@@ -16,6 +22,7 @@ export async function createCheckoutSession({
   locale: string;
   stripeCustomerId?: string;
 }) {
+  const stripe = getStripe();
   const baseUrl = process.env.NEXT_PUBLIC_APP_URL!;
   const params: Stripe.Checkout.SessionCreateParams = {
     mode: "subscription",
@@ -51,6 +58,7 @@ export async function createCustomerPortalSession({
   stripeCustomerId: string;
   locale: string;
 }) {
+  const stripe = getStripe();
   const baseUrl = process.env.NEXT_PUBLIC_APP_URL!;
   const params: Stripe.BillingPortal.SessionCreateParams = {
     customer: stripeCustomerId,

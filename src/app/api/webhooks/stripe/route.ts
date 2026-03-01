@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
-import { stripe } from "@/lib/stripe";
+import { getStripe } from "@/lib/stripe";
 import { prisma } from "@/lib/prisma";
 
 export async function POST(request: Request) {
@@ -11,6 +11,7 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Missing signature" }, { status: 400 });
   }
 
+  const stripe = getStripe();
   let event: Stripe.Event;
   try {
     event = stripe.webhooks.constructEvent(
@@ -96,7 +97,7 @@ async function handleCheckoutComplete(session: Stripe.Checkout.Session) {
         ? session.subscription
         : session.subscription.id;
 
-    const sub = await stripe.subscriptions.retrieve(subscriptionId);
+    const sub = await getStripe().subscriptions.retrieve(subscriptionId);
     await prisma.subscription.upsert({
       where: { userId },
       update: {
