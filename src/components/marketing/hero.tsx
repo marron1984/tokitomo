@@ -26,108 +26,107 @@ export function Hero() {
 
   return (
     <section className="relative overflow-hidden bg-cream">
-      {/* Ink wash atmospheric blobs */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute -right-32 -top-32 h-[500px] w-[500px] rounded-full bg-dustyrose/8 animate-ink-dissolve" />
-        <div className="absolute -left-20 bottom-0 h-[400px] w-[400px] rounded-full bg-sage/6 animate-ink-dissolve stagger-3" />
-        <div className="absolute right-1/4 top-1/3 h-[300px] w-[300px] rounded-full bg-gold/6 animate-ink-dissolve stagger-5" />
-      </div>
+      <div className="relative mx-auto max-w-7xl px-6 pb-10 pt-12 md:pb-20 md:pt-20">
+        <div className="grid items-center gap-12 md:grid-cols-2 md:gap-16">
 
-      <div className="relative mx-auto max-w-5xl px-6 pb-24 pt-20 md:pb-36 md:pt-32">
-        {/* 間 (ma) — Logo as the quiet centerpiece */}
-        <div className={`flex justify-center ${mounted ? "animate-scale-up" : "opacity-0"}`}>
-          <div className="relative">
-            {/* Soft glow behind logo */}
-            <div className="absolute -inset-16 rounded-full bg-gradient-to-br from-dustyrose/15 via-transparent to-gold/10 blur-3xl animate-breathe" />
-            <div className="absolute -inset-8 rounded-full bg-cream/50 blur-2xl animate-breathe stagger-2" />
+          {/* Left — Text + CTA */}
+          <div className={`max-w-xl ${mounted ? "animate-fade-up" : "opacity-0"}`}>
+            <p className="text-xs font-medium uppercase tracking-[0.25em] text-warmgray/70">
+              {t(`${heroKey}.eyebrow`)}
+            </p>
 
-            {/* The logo — large, breathing, contemplative */}
-            <div className="relative animate-breathe">
-              <Image
-                src="/logo.png"
-                alt="TOKI & TOMO — Stationery from Japan"
-                width={600}
-                height={600}
-                className="rounded-3xl drop-shadow-[0_20px_60px_rgba(44,40,37,0.08)]"
-                priority
-              />
+            <h1 className="mt-5 font-serif text-4xl font-semibold leading-[1.15] tracking-tight text-charcoal md:text-5xl lg:text-6xl">
+              {t(`${heroKey}.title`)}
+            </h1>
+
+            <p className="mt-6 max-w-md text-base leading-relaxed text-warmgray md:text-lg">
+              {t(`${heroKey}.subtitle`)}
+            </p>
+
+            {/* Price */}
+            <div className="mt-8">
+              <p className="font-serif text-2xl font-semibold text-charcoal">
+                {t("price.total")}
+              </p>
+              <p className="mt-1 text-sm text-warmgray/70">
+                {t("price.breakdown")}
+              </p>
+            </div>
+
+            {/* CTAs */}
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <Link href="/app/subscribe" onClick={handleCtaClick}>
+                <Button
+                  size="lg"
+                  className="btn-shimmer animate-pulse-glow min-w-[200px] bg-charcoal text-base text-cream hover:bg-charcoal/90"
+                >
+                  {t(`${heroKey}.cta`)}
+                </Button>
+              </Link>
+              <Link href="/how-it-works">
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="min-w-[200px] border-charcoal/15 text-base text-charcoal hover:bg-charcoal/5"
+                >
+                  {t(`${heroKey}.secondaryCta`)}
+                </Button>
+              </Link>
+            </div>
+
+            {/* Trust badges */}
+            <div className="mt-8 flex flex-wrap items-center gap-4 text-xs text-warmgray/60">
+              <span className="flex items-center gap-1.5">
+                <Shield className="h-3.5 w-3.5" />
+                {t("trust.cancelAnytime")}
+              </span>
+              <span className="flex items-center gap-1.5">
+                <RefreshCw className="h-3.5 w-3.5" />
+                {t("trust.replacementPolicy")}
+              </span>
+              <span className="flex items-center gap-1.5">
+                <CreditCard className="h-3.5 w-3.5" />
+                {t("trust.secureCheckout")}
+              </span>
+              <span className="flex items-center gap-1.5">
+                <Globe className="h-3.5 w-3.5" />
+                {t("trust.customsNote")}
+              </span>
             </div>
           </div>
-        </div>
 
-        {/* Ornamental divider */}
-        <div className={`mx-auto mt-16 max-w-xs ${mounted ? "animate-fade-in stagger-2" : "opacity-0"}`}>
-          <div className="divider-ornament text-xs tracking-[0.3em] text-warmgray/50">&#x2022;</div>
-        </div>
-
-        {/* Text content — centered, minimal, quiet */}
-        <div className={`mt-12 text-center ${mounted ? "animate-fade-up stagger-3" : "opacity-0"}`}>
-          <p className="text-xs font-medium uppercase tracking-[0.25em] text-warmgray/70">
-            {t(`${heroKey}.eyebrow`)}
-          </p>
-
-          <h1 className="mx-auto mt-6 max-w-2xl font-serif text-4xl font-semibold leading-tight tracking-tight text-charcoal md:text-5xl lg:text-6xl">
-            {t(`${heroKey}.title`)}
-          </h1>
-
-          <p className="mx-auto mt-8 max-w-lg text-base leading-relaxed text-warmgray md:text-lg">
-            {t(`${heroKey}.subtitle`)}
-          </p>
-        </div>
-
-        {/* Price */}
-        <div className={`mt-10 text-center ${mounted ? "animate-fade-in stagger-4" : "opacity-0"}`}>
-          <p className="font-serif text-2xl font-semibold text-charcoal">
-            {t("price.total")}
-          </p>
-          <p className="mt-1 text-sm text-warmgray/70">
-            {t("price.breakdown")}
-          </p>
-        </div>
-
-        {/* CTAs */}
-        <div className={`mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row ${mounted ? "animate-fade-up stagger-5" : "opacity-0"}`}>
-          <Link href="/app/subscribe" onClick={handleCtaClick}>
-            <Button
-              size="lg"
-              className="btn-shimmer animate-pulse-glow min-w-[220px] bg-charcoal text-base text-cream hover:bg-charcoal/90"
-            >
-              {t(`${heroKey}.cta`)}
-            </Button>
-          </Link>
-          <Link href="/how-it-works">
-            <Button
-              variant="outline"
-              size="lg"
-              className="min-w-[220px] border-charcoal/15 text-base text-charcoal hover:bg-charcoal/5"
-            >
-              {t(`${heroKey}.secondaryCta`)}
-            </Button>
-          </Link>
-        </div>
-
-        {/* Trust badges */}
-        <div className={`mt-12 flex flex-wrap items-center justify-center gap-5 text-xs text-warmgray/60 ${mounted ? "animate-fade-in stagger-6" : "opacity-0"}`}>
-          <span className="flex items-center gap-1.5 transition-colors duration-500 hover:text-warmgray">
-            <Shield className="h-3.5 w-3.5" />
-            {t("trust.cancelAnytime")}
-          </span>
-          <span className="flex items-center gap-1.5 transition-colors duration-500 hover:text-warmgray">
-            <RefreshCw className="h-3.5 w-3.5" />
-            {t("trust.replacementPolicy")}
-          </span>
-          <span className="flex items-center gap-1.5 transition-colors duration-500 hover:text-warmgray">
-            <CreditCard className="h-3.5 w-3.5" />
-            {t("trust.secureCheckout")}
-          </span>
-          <span className="flex items-center gap-1.5 transition-colors duration-500 hover:text-warmgray">
-            <Globe className="h-3.5 w-3.5" />
-            {t("trust.customsNote")}
-          </span>
+          {/* Right — Product box photo */}
+          <div className={`relative ${mounted ? "animate-scale-up stagger-2" : "opacity-0"}`}>
+            <div className="relative aspect-square overflow-hidden rounded-3xl">
+              <Image
+                src="/hero-box.png"
+                alt="TOKI & TOMO subscription box with fountain pen and cherry blossoms"
+                fill
+                className="object-cover"
+                priority
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+            </div>
+            {/* Decorative glow */}
+            <div className="pointer-events-none absolute -inset-8 -z-10 rounded-full bg-gradient-to-br from-dustyrose/15 via-transparent to-gold/10 blur-3xl" />
+          </div>
         </div>
       </div>
 
-      {/* Marquee — slower, quieter */}
+      {/* Full-width lifestyle banner */}
+      <div className={`relative mt-6 h-[340px] overflow-hidden md:mt-10 md:h-[480px] ${mounted ? "animate-fade-in stagger-4" : "opacity-0"}`}>
+        <Image
+          src="/hero-lifestyle.png"
+          alt="Writing under cherry blossoms in Kyoto with TOKI & TOMO stationery"
+          fill
+          className="object-cover object-top"
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-cream via-cream/20 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-cream/40 to-transparent" />
+      </div>
+
+      {/* Marquee */}
       <div className="overflow-hidden border-y border-charcoal/5 bg-charcoal/95 py-3.5">
         <div className="animate-marquee flex whitespace-nowrap">
           <span className="mx-10 text-[10px] font-medium uppercase tracking-[0.2em] text-cream/50">

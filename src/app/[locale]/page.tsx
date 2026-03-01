@@ -11,6 +11,7 @@ import { FaqAccordion } from "@/components/marketing/faq-accordion";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { Button } from "@/components/ui/button";
 import { Pen, Gift, Palette, BookOpen, ArrowRight } from "lucide-react";
+import Image from "next/image";
 
 export default function HomePage() {
   const t = useTranslations("home");
@@ -27,9 +28,9 @@ export default function HomePage() {
     <>
       <Hero />
 
-      {/* What You Get — generous 間 (ma) spacing */}
+      {/* What You Get — with box photo */}
       <section className="py-28 md:py-40">
-        <div className="mx-auto max-w-5xl px-6">
+        <div className="mx-auto max-w-6xl px-6">
           <ScrollReveal>
             <div className="text-center">
               <div className="divider-ornament mx-auto mb-8 max-w-xs text-xs tracking-[0.3em] text-warmgray/40">&#x2022;</div>
@@ -39,19 +40,35 @@ export default function HomePage() {
             </div>
           </ScrollReveal>
 
-          <div className="mt-16 grid grid-cols-2 gap-8 md:grid-cols-4">
-            {items.map((item, i) => (
-              <ScrollReveal key={i} delay={i * 0.15}>
-                <div className="card-hover group rounded-2xl border border-border/60 bg-card p-8 text-center">
-                  <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-cream transition-all duration-700 group-hover:scale-105 group-hover:shadow-md">
-                    <item.icon className="h-6 w-6 text-dustyrose/80" />
+          <div className="mt-16 grid items-center gap-12 md:grid-cols-2">
+            {/* Box photo */}
+            <ScrollReveal delay={0.1}>
+              <div className="relative aspect-square overflow-hidden rounded-2xl">
+                <Image
+                  src="/hero-box.png"
+                  alt="TOKI & TOMO box contents"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+              </div>
+            </ScrollReveal>
+
+            {/* Item grid */}
+            <div className="grid grid-cols-2 gap-6">
+              {items.map((item, i) => (
+                <ScrollReveal key={i} delay={i * 0.12}>
+                  <div className="card-hover group rounded-2xl border border-border/60 bg-card p-7 text-center">
+                    <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-cream transition-all duration-700 group-hover:scale-105 group-hover:shadow-md">
+                      <item.icon className="h-6 w-6 text-dustyrose/80" />
+                    </div>
+                    <p className="mt-4 text-sm font-medium text-charcoal/80">
+                      {item.label}
+                    </p>
                   </div>
-                  <p className="mt-5 text-sm font-medium text-charcoal/80">
-                    {item.label}
-                  </p>
-                </div>
-              </ScrollReveal>
-            ))}
+                </ScrollReveal>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -76,11 +93,17 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Final CTA — quiet, contemplative */}
+      {/* Final CTA — with lifestyle photo background */}
       <section className="relative overflow-hidden py-32 md:py-48">
-        <div className="pointer-events-none absolute inset-0">
-          <div className="absolute -left-32 top-10 h-[400px] w-[400px] rounded-full bg-dustyrose/6 animate-ink-dissolve" />
-          <div className="absolute -right-20 bottom-10 h-[300px] w-[300px] rounded-full bg-sage/6 animate-ink-dissolve stagger-3" />
+        <div className="absolute inset-0">
+          <Image
+            src="/hero-flatlay.png"
+            alt="Stationery collection"
+            fill
+            className="object-cover"
+            sizes="100vw"
+          />
+          <div className="absolute inset-0 bg-cream/85 backdrop-blur-sm" />
         </div>
         <div className="relative mx-auto max-w-2xl px-6 text-center">
           <ScrollReveal>

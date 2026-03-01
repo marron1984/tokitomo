@@ -5,6 +5,7 @@ import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/button";
 import { Package, Sparkles, Heart, ArrowRight } from "lucide-react";
 import { ScrollReveal } from "@/components/scroll-reveal";
+import Image from "next/image";
 
 export default function HowItWorksPage() {
   const t = useTranslations("howItWorks");
@@ -25,6 +26,19 @@ export default function HowItWorksPage() {
           <p className="mt-4 text-center text-lg text-warmgray">
             {t("subtitle")}
           </p>
+        </ScrollReveal>
+
+        {/* Hero photo */}
+        <ScrollReveal delay={0.1}>
+          <div className="relative mt-14 h-[280px] overflow-hidden rounded-2xl md:h-[380px]">
+            <Image
+              src="/hero-flatlay.png"
+              alt="TOKI & TOMO stationery collection at a cherry blossom hanami"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 800px"
+            />
+          </div>
         </ScrollReveal>
 
         <div className="mt-20 space-y-16">

@@ -2,6 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { ScrollReveal } from "@/components/scroll-reveal";
+import Image from "next/image";
 
 export function ThemeSpotlight() {
   const t = useTranslations("home");
@@ -19,24 +20,21 @@ export function ThemeSpotlight() {
         </ScrollReveal>
 
         <ScrollReveal delay={0.2}>
-          <div className="mx-auto mt-16 max-w-4xl overflow-hidden rounded-2xl border border-border/60 bg-card shadow-sm">
+          <div className="mx-auto mt-16 max-w-5xl overflow-hidden rounded-2xl border border-border/60 bg-card shadow-sm">
             <div className="grid md:grid-cols-2">
-              {/* Visual side — contemplative, breathing */}
-              <div className="relative flex min-h-[320px] items-center justify-center overflow-hidden bg-gradient-to-br from-dustyrose/15 via-cream to-gold/15 p-14">
-                {/* Slow ink-dissolve atmosphere */}
-                <div className="absolute left-4 top-4 h-24 w-24 rounded-full bg-dustyrose/8 animate-ink-dissolve" />
-                <div className="absolute bottom-6 right-6 h-20 w-20 rounded-full bg-sage/8 animate-ink-dissolve stagger-3" />
-                <div className="absolute right-10 top-12 h-12 w-12 rounded-full bg-gold/6 animate-ink-dissolve stagger-5" />
-                <div className="text-center">
-                  <div className="animate-breathe text-8xl">🌸</div>
-                  <p className="mt-6 font-serif text-sm font-medium text-charcoal/60">
-                    {t("themeTitle")}
-                  </p>
-                </div>
+              {/* Photo side — real flatlay */}
+              <div className="relative min-h-[320px] overflow-hidden md:min-h-[420px]">
+                <Image
+                  src="/hero-flatlay.png"
+                  alt="Stationery spread with ink bottles, washi tape, pens, and notebooks at a cherry blossom hanami"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
               </div>
 
-              {/* Text side — generous spacing */}
-              <div className="flex flex-col justify-center p-12">
+              {/* Text side */}
+              <div className="flex flex-col justify-center p-10 md:p-14">
                 <p className="text-xs font-medium uppercase tracking-[0.2em] text-warmgray/70">
                   March 2026
                 </p>
@@ -47,7 +45,7 @@ export function ThemeSpotlight() {
                   {t("themeDesc")}
                 </p>
                 <div className="mt-8 flex flex-wrap gap-2">
-                  {["Letter Set", "Washi Tape", "Gel Pen", "Stickers"].map((tag) => (
+                  {["Letter Set", "Washi Tape", "Ink Bottles", "Fountain Pens", "Stickers"].map((tag) => (
                     <span
                       key={tag}
                       className="rounded-full bg-cream px-3 py-1.5 text-xs font-medium text-warmgray/80 transition-colors duration-500 hover:text-charcoal"

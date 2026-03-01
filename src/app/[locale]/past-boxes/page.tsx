@@ -5,15 +5,16 @@ import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/button";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { ArrowRight } from "lucide-react";
+import Image from "next/image";
 
 export default function PastBoxesPage() {
   const t = useTranslations("pastBoxes");
 
   const teaserItems = [
-    { emoji: "🌸", title: "Sakura Letters", month: "April 2025", color: "from-dustyrose/20 to-cream" },
-    { emoji: "🎋", title: "Tanabata Dreams", month: "July 2025", color: "from-sage/20 to-cream" },
-    { emoji: "🍂", title: "Autumn Brush", month: "October 2025", color: "from-gold/20 to-cream" },
-    { emoji: "❄️", title: "Winter Calm", month: "January 2026", color: "from-muted to-cream" },
+    { emoji: "🌸", title: "Sakura Letters", month: "March 2026", color: "from-dustyrose/20 to-cream", hasPhoto: true },
+    { emoji: "💌", title: "Love Letters", month: "February 2026", color: "from-dustyrose/30 to-cream", hasPhoto: false },
+    { emoji: "✨", title: "New Beginnings", month: "January 2026", color: "from-gold/20 to-cream", hasPhoto: false },
+    { emoji: "🌧️", title: "Rainy Day", month: "April 2026 (Coming)", color: "from-sage/20 to-cream", hasPhoto: false },
   ];
 
   return (
@@ -26,6 +27,30 @@ export default function PastBoxesPage() {
           <p className="mt-4 text-center text-warmgray">
             {t("subtitle")}
           </p>
+        </ScrollReveal>
+
+        {/* Featured box with real photo */}
+        <ScrollReveal delay={0.1}>
+          <div className="mx-auto mt-14 max-w-4xl overflow-hidden rounded-2xl border border-border/60 bg-card shadow-sm">
+            <div className="grid md:grid-cols-2">
+              <div className="relative min-h-[280px]">
+                <Image
+                  src="/hero-flatlay.png"
+                  alt="Sakura Letters box contents"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+              </div>
+              <div className="flex flex-col justify-center p-10">
+                <p className="text-xs font-medium uppercase tracking-[0.2em] text-warmgray/70">March 2026 — Current</p>
+                <h2 className="mt-3 font-serif text-3xl font-semibold text-charcoal">Sakura Letters</h2>
+                <p className="mt-4 leading-relaxed text-warmgray">
+                  Handmade washi paper with pressed sakura petals, Pentel brush pens, foil-stamped stickers, and a spring notebook. Everything you need for the season of new beginnings.
+                </p>
+              </div>
+            </div>
+          </div>
         </ScrollReveal>
 
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">

@@ -2,6 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { ScrollReveal } from "@/components/scroll-reveal";
+import Image from "next/image";
 
 export function SocialProof() {
   const t = useTranslations("home");
@@ -14,12 +15,6 @@ export function SocialProof() {
 
   return (
     <section className="relative overflow-hidden py-28 md:py-40">
-      {/* Atmospheric ink blobs */}
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute -left-32 top-1/4 h-[300px] w-[300px] rounded-full bg-gold/4 animate-ink-dissolve stagger-2" />
-        <div className="absolute -right-20 bottom-10 h-[250px] w-[250px] rounded-full bg-sage/5 animate-ink-dissolve stagger-5" />
-      </div>
-
       <div className="relative mx-auto max-w-6xl px-6">
         <ScrollReveal>
           <div className="text-center">
@@ -34,7 +29,6 @@ export function SocialProof() {
           {testimonials.map((item, i) => (
             <ScrollReveal key={i} delay={i * 0.2}>
               <div className="card-hover rounded-2xl border border-border/60 bg-card/80 backdrop-blur-sm p-10">
-                {/* Quote mark — ink-like */}
                 <span className="font-serif text-5xl leading-none text-dustyrose/20">
                   &ldquo;
                 </span>
@@ -49,6 +43,25 @@ export function SocialProof() {
             </ScrollReveal>
           ))}
         </div>
+
+        {/* Lifestyle photo band below testimonials */}
+        <ScrollReveal delay={0.3}>
+          <div className="relative mt-20 h-[280px] overflow-hidden rounded-2xl md:h-[360px]">
+            <Image
+              src="/hero-lifestyle.png"
+              alt="A woman journaling under cherry blossoms with TOKI & TOMO stationery"
+              fill
+              className="object-cover object-center"
+              sizes="100vw"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-charcoal/40 to-transparent" />
+            <div className="absolute bottom-8 left-8 right-8 text-center">
+              <p className="font-serif text-xl font-semibold text-cream md:text-2xl">
+                Slow down. Write beautifully.
+              </p>
+            </div>
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   );
