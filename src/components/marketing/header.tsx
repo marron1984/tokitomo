@@ -45,8 +45,8 @@ export function Header({ locale }: { locale: string }) {
           <Image
             src="/logo.png"
             alt="TOKI & TOMO"
-            width={44}
-            height={44}
+            width={52}
+            height={52}
             className="rounded-sm"
           />
           <div className="hidden sm:block">

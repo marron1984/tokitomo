@@ -14,31 +14,40 @@ export function HowItWorksSection() {
   ];
 
   return (
-    <section className="py-20 md:py-32">
-      <div className="mx-auto max-w-6xl px-6">
+    <section className="relative overflow-hidden py-28 md:py-40">
+      {/* Atmospheric ink blobs */}
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute -right-40 top-20 h-[350px] w-[350px] rounded-full bg-sage/5 animate-ink-dissolve" />
+        <div className="absolute -left-20 bottom-0 h-[250px] w-[250px] rounded-full bg-dustyrose/5 animate-ink-dissolve stagger-4" />
+      </div>
+
+      <div className="relative mx-auto max-w-6xl px-6">
         <ScrollReveal>
-          <h2 className="text-center font-serif text-3xl font-semibold text-charcoal md:text-4xl">
-            {t("howItWorks")}
-          </h2>
+          <div className="text-center">
+            <div className="divider-ornament mx-auto mb-8 max-w-xs text-xs tracking-[0.3em] text-warmgray/40">&#x2022;</div>
+            <h2 className="font-serif text-3xl font-semibold text-charcoal md:text-4xl">
+              {t("howItWorks")}
+            </h2>
+          </div>
         </ScrollReveal>
 
-        <div className="mt-16 grid gap-8 md:grid-cols-3">
+        <div className="mt-20 grid gap-10 md:grid-cols-3">
           {steps.map((step, i) => (
-            <ScrollReveal key={i} delay={i * 0.15}>
-              <div className="card-hover group relative rounded-2xl border border-border bg-card p-8 text-center">
-                {/* Step number */}
-                <span className="absolute right-6 top-6 font-serif text-4xl font-bold text-muted/60">
+            <ScrollReveal key={i} delay={i * 0.2}>
+              <div className="card-hover group relative rounded-2xl border border-border/60 bg-card p-10 text-center">
+                {/* Step number — faint, contemplative */}
+                <span className="absolute right-6 top-6 font-serif text-4xl font-bold text-muted/40">
                   {step.num}
                 </span>
 
-                <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-cream transition-transform duration-500 group-hover:scale-110">
-                  <step.icon className="h-7 w-7 text-dustyrose" />
+                <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-cream transition-all duration-700 group-hover:scale-105 group-hover:shadow-md">
+                  <step.icon className="h-7 w-7 text-dustyrose/80" />
                 </div>
 
-                <h3 className="mt-5 font-serif text-xl font-semibold text-charcoal">
+                <h3 className="mt-6 font-serif text-xl font-semibold text-charcoal">
                   {step.title}
                 </h3>
-                <p className="mt-3 text-sm leading-relaxed text-warmgray">
+                <p className="mt-4 text-sm leading-relaxed text-warmgray">
                   {step.desc}
                 </p>
               </div>

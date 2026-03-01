@@ -6,6 +6,7 @@ import { Header } from "@/components/marketing/header";
 import { Footer } from "@/components/marketing/footer";
 import { StickyCta } from "@/components/marketing/sticky-cta";
 import { AnalyticsProvider } from "@/components/analytics-provider";
+import { AmbientPetals } from "@/components/ambient-petals";
 
 export async function generateMetadata({
   params,
@@ -53,6 +54,8 @@ export default async function LocaleLayout({
       <body className="font-sans text-foreground">
         <NextIntlClientProvider messages={messages}>
           <AnalyticsProvider>
+            <div className="grain-overlay" />
+            <AmbientPetals />
             <Header locale={locale} />
             <main className="min-h-screen">{children}</main>
             <Footer />
