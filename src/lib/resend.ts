@@ -5,39 +5,77 @@ let _resend: Resend | null = null;
 
 export function getResend(): Resend {
   if (!_resend) {
-    _resend = new Resend(process.env.AUTH_RESEND_KEY);
+    const key = process.env.AUTH_RESEND_KEY;
+    if (!key) {
+      throw new Error(
+        "AUTH_RESEND_KEY is not set. Emails cannot be sent. " +
+          "Get your API key from https://resend.com/api-keys"
+      );
+    }
+    _resend = new Resend(key);
   }
   return _resend;
 }
 
-const FROM = "TOKI & TOMO <noreply@tokitomo.com>";
-const REPLY_TO = "hello@tokitomo.com";
+/**
+ * FROM address — requires Resend domain verification for custom domains.
+ *
+ * If your domain (e.g. tokitomo.com) is NOT verified in Resend yet,
+ * set EMAIL_FROM to "TOKI & TOMO <onboarding@resend.dev>" in .env
+ * to use Resend's sandbox (sends only to the account owner's email).
+ *
+ * Once verified: EMAIL_FROM="TOKI & TOMO <noreply@tokitomo.com>"
+ */
+const FROM =
+  process.env.EMAIL_FROM || "TOKI & TOMO <onboarding@resend.dev>";
+const REPLY_TO = process.env.EMAIL_REPLY_TO || "hello@tokitomo.com";
+
+/**
+ * Check if Resend is properly configured before attempting to send.
+ */
+function isEmailConfigured(): boolean {
+  return !!process.env.AUTH_RESEND_KEY;
+}
 
 async function canSendEmail(
   email: string,
   category: "emailShipping" | "emailMarketing" | "emailReferral"
 ): Promise<boolean> {
-  const user = await prisma.user.findUnique({
-    where: { email },
-    select: { emailShipping: true, emailMarketing: true, emailReferral: true },
-  });
-  if (!user) return true;
-  return user[category] !== false;
+  try {
+    const user = await prisma.user.findUnique({
+      where: { email },
+      select: { emailShipping: true, emailMarketing: true, emailReferral: true },
+    });
+    if (!user) return true;
+    return user[category] !== false;
+  } catch {
+    return true;
+  }
 }
 
 // ── Welcome email (on first sign-up) ──────────────────────
 
 export async function sendWelcomeEmail(email: string, name?: string | null) {
+  if (!isEmailConfigured()) {
+    console.warn("[email] AUTH_RESEND_KEY not set — skipping welcome email to", email);
+    return;
+  }
   const resend = getResend();
   const displayName = name || "friend";
 
-  await resend.emails.send({
+  const { error } = await resend.emails.send({
     from: FROM,
     replyTo: REPLY_TO,
     to: email,
     subject: "Welcome to TOKI & TOMO — Your stationery journey begins",
     html: welcomeEmailHtml(displayName),
   });
+
+  if (error) {
+    console.error("[email] Failed to send welcome email:", error);
+    throw new Error(`Welcome email failed: ${error.message}`);
+  }
+  console.log("[email] Welcome email sent to", email);
 }
 
 // ── Subscription confirmed ─────────────────────────────────
@@ -46,16 +84,26 @@ export async function sendSubscriptionConfirmedEmail(
   email: string,
   name?: string | null
 ) {
+  if (!isEmailConfigured()) {
+    console.warn("[email] AUTH_RESEND_KEY not set — skipping subscription email to", email);
+    return;
+  }
   const resend = getResend();
   const displayName = name || "friend";
 
-  await resend.emails.send({
+  const { error } = await resend.emails.send({
     from: FROM,
     replyTo: REPLY_TO,
     to: email,
     subject: "You're in! Your first TOKI & TOMO box is on its way",
     html: subscriptionConfirmedHtml(displayName),
   });
+
+  if (error) {
+    console.error("[email] Failed to send subscription email:", error);
+    throw new Error(`Subscription email failed: ${error.message}`);
+  }
+  console.log("[email] Subscription confirmed email sent to", email);
 }
 
 // ── Shipping notification ──────────────────────────────────
@@ -67,17 +115,30 @@ export async function sendShippingNotificationEmail(
   carrier: string,
   month: string
 ) {
-  if (!(await canSendEmail(email, "emailShipping"))) return;
+  if (!isEmailConfigured()) {
+    console.warn("[email] AUTH_RESEND_KEY not set — skipping shipping email to", email);
+    return;
+  }
+  if (!(await canSendEmail(email, "emailShipping"))) {
+    console.log("[email] User opted out of shipping emails:", email);
+    return;
+  }
   const resend = getResend();
   const displayName = name || "friend";
 
-  await resend.emails.send({
+  const { error } = await resend.emails.send({
     from: FROM,
     replyTo: REPLY_TO,
     to: email,
     subject: `Your ${month} TOKI & TOMO box has shipped!`,
     html: shippingNotificationHtml(displayName, trackingNumber, carrier, month),
   });
+
+  if (error) {
+    console.error("[email] Failed to send shipping email:", error);
+    throw new Error(`Shipping email failed: ${error.message}`);
+  }
+  console.log("[email] Shipping notification sent to", email);
 }
 
 // ── Referral bonus earned ──────────────────────────────────
@@ -87,17 +148,30 @@ export async function sendReferralBonusEmail(
   name: string | null,
   friendEmail: string
 ) {
-  if (!(await canSendEmail(email, "emailReferral"))) return;
+  if (!isEmailConfigured()) {
+    console.warn("[email] AUTH_RESEND_KEY not set — skipping referral email to", email);
+    return;
+  }
+  if (!(await canSendEmail(email, "emailReferral"))) {
+    console.log("[email] User opted out of referral emails:", email);
+    return;
+  }
   const resend = getResend();
   const displayName = name || "friend";
 
-  await resend.emails.send({
+  const { error } = await resend.emails.send({
     from: FROM,
     replyTo: REPLY_TO,
     to: email,
     subject: "Your referral bonus is ready!",
     html: referralBonusHtml(displayName, friendEmail),
   });
+
+  if (error) {
+    console.error("[email] Failed to send referral email:", error);
+    throw new Error(`Referral email failed: ${error.message}`);
+  }
+  console.log("[email] Referral bonus email sent to", email);
 }
 
 // ── Payment failed warning ─────────────────────────────────
@@ -106,16 +180,26 @@ export async function sendPaymentFailedEmail(
   email: string,
   name: string | null
 ) {
+  if (!isEmailConfigured()) {
+    console.warn("[email] AUTH_RESEND_KEY not set — skipping payment-failed email to", email);
+    return;
+  }
   const resend = getResend();
   const displayName = name || "friend";
 
-  await resend.emails.send({
+  const { error } = await resend.emails.send({
     from: FROM,
     replyTo: REPLY_TO,
     to: email,
     subject: "Action needed — Your TOKI & TOMO payment couldn't be processed",
     html: paymentFailedHtml(displayName),
   });
+
+  if (error) {
+    console.error("[email] Failed to send payment-failed email:", error);
+    throw new Error(`Payment-failed email failed: ${error.message}`);
+  }
+  console.log("[email] Payment failed email sent to", email);
 }
 
 // ── HTML Templates ─────────────────────────────────────────

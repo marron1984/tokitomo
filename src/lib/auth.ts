@@ -6,12 +6,24 @@ import { sendWelcomeEmail } from "./resend";
 
 const adapter = PrismaAdapter(prisma);
 
+/**
+ * Magic link "from" address — must match a verified Resend domain.
+ *
+ * If your domain is NOT verified in Resend:
+ *   EMAIL_FROM="TOKI & TOMO <onboarding@resend.dev>"
+ *
+ * Once tokitomo.com is verified:
+ *   EMAIL_FROM="TOKI & TOMO <noreply@tokitomo.com>"
+ */
+const emailFrom =
+  process.env.EMAIL_FROM || "TOKI & TOMO <onboarding@resend.dev>";
+
 export const { handlers, auth, signIn, signOut } = NextAuth({
   adapter,
   session: { strategy: "jwt" },
   providers: [
     Resend({
-      from: "TOKI & TOMO <noreply@tokitomo.com>",
+      from: emailFrom,
     }),
   ],
   pages: {
@@ -20,12 +32,13 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   },
   events: {
     async createUser({ user }) {
-      // Send welcome email when a new user is created
+      // Send welcome email when a new user is created for the first time
       if (user.email) {
+        console.log("[auth] New user created:", user.email, "— sending welcome email");
         try {
           await sendWelcomeEmail(user.email, user.name);
         } catch (e) {
-          console.error("Failed to send welcome email:", e);
+          console.error("[auth] Failed to send welcome email:", e);
         }
       }
     },
